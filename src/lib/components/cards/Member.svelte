@@ -33,7 +33,7 @@
                 {/if}
             </div>
         </div>
-        <span style="align-self: center;">(<a href="/">Back to home</a>)</span>
+        <span style="align-self: center;">(<a href={`/f/${member.system}`}>Back to system</a>)</span>
     </section>
     <div class="content">
     {#if getDescription(member)}

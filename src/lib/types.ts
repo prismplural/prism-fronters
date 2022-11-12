@@ -9,7 +9,8 @@ export interface Member {
     banner?: string,
     color?: string,
     pronouns?: string,
-    created?: string
+    created?: string,
+    system: string
 }
 
 export interface Front {
