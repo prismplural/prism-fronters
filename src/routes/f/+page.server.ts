@@ -6,6 +6,6 @@ export const actions = {
         const data = await request.formData();
         let sid = data.get('sid');
 
-        throw redirect(307, `./f/${sid}`);
+        throw redirect(307, `./f/${sid.toLowerCase()}`);
     }
   };

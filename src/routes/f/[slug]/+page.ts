@@ -1,7 +1,7 @@
 import { error } from '@sveltejs/kit';
 
 export async function load( {fetch, params} ) {
-    const sid = params.slug;
+    const sid = params.slug.toLowerCase();
 
     let system: any;
     system = await fetch(`https://api.pluralkit.me/v2/systems/${sid}`, {

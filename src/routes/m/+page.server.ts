@@ -6,6 +6,6 @@ export const actions = {
         const data = await request.formData();
         let mid = data.get('mid');
 
-        throw redirect(307, `./m/${mid}`);
+        throw redirect(307, `./m/${mid.toLowerCase()}`);
     }
   };

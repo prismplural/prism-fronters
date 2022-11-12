@@ -1,7 +1,7 @@
 import { error } from '@sveltejs/kit';
 
 export async function load( {params, fetch} ) {
-    const mid = params.slug;
+    const mid = params.slug.toLowerCase();
 
     let member: any;
     member = await fetch(`https://api.pluralkit.me/v2/members/${mid}`, {
