@@ -97,7 +97,10 @@ export function buildMemberPageTitle(system: System, member: Member) {
 export function buildMemberEmbedTitle(system: System, member: Member) {
     let memberName = member.display_name ? member.display_name : member.name;
 
-    let str = memberName + " " + (system.name);
+    let str = memberName;
+    if (system.name) {
+        str += ` (${system.name})`
+    }
     return str.trim();
 }
 
