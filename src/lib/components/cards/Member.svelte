@@ -1,9 +1,9 @@
 <script lang="ts">
     import type { Member } from '$lib/types';
     import toHtml from 'discord-markdown';
-    import twemoji from 'twemoji';
-    import moment from 'moment';
-    import { getEmojis, getBirthday, getPronouns, getDescription, getAvatar, getColor, getBanner, getName, convertToHTML } from '$lib/functions/strings';
+
+    import { convertToHTML } from '$lib/functions/strings/common';
+    import { getEmojis, getBirthday, getPronouns, getDescription, getColor, getBanner, getName } from '$lib/functions/strings/member';
 
     const { toHTML } = toHtml;
 

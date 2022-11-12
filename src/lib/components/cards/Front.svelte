@@ -1,6 +1,7 @@
 <script lang="ts">
     import type { Member } from "$lib/types";
-    import { getName, getPronouns, convertToHTML, getAvatar, getColor } from '$lib/functions/strings'
+    import { convertToHTML } from '$lib/functions/strings/common'
+    import { getName, getPronouns, getAvatar, getColor } from '$lib/functions/strings/member'
 
     export let member: Member;
 
