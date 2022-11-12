@@ -4,6 +4,13 @@
     box-sizing: border-box;
 }
 
+html {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100%;
+}
+
 #app {
     margin: auto auto;
     width: 100%;
@@ -12,8 +19,7 @@
 }
 
 body {
-    width: 100%;
-    min-height: 100vh;
+    flex: 1;
     margin: 0;
     font-family: "ui-sans-serif", sans-serif;
     background-color: $background;
@@ -92,42 +98,50 @@ body {
 
     .side {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         border-radius: 4px 4px 0 0;
         gap: 1rem;
         height: 100%;
 
-        .avatar {
-            width: 100%;
-            max-width: 12rem;
-            height: auto;
-            border-radius: 4px;
-        }
-
-        .info {
+        .top {
             display: flex;
-            gap: 0.325rem;
             flex-direction: column;
-            flex: 0 0 auto;
-            padding: 1rem;
-            padding-right: 0.5rem;
-            border-radius: 4px;
-            background-color: $block;
             flex: 1;
+            width: 100%;
+            gap: 1rem;
 
-            h3 {
-                margin: 0;
+            .avatar {
+                width: 100%;
+                max-width: none;
+                height: auto;
+                border-radius: 4px;
+                object-fit: cover;
             }
 
-            hr {
-                border: none;
-                height: 2px;
-                width: 100%;
-                background-color: $background;
+            .info {
+                display: flex;
+                gap: 0.325rem;
+                flex-direction: column;
+                flex: 0 0 auto;
+                padding: 1rem;
+                padding-right: 0.5rem;
+                border-radius: 4px;
+                background-color: $block;
+                flex: 1;
+
+                h3 {
+                    margin: 0;
+                }
+
+                hr {
+                    border: none;
+                    height: 2px;
+                    width: 100%;
+                    background-color: $background;
+                }
             }
         }
-    
-    }
+}
 
     .content {
         display: flex;
@@ -238,6 +252,20 @@ input {
     justify-content: center;
 }
 
+@media (min-width: 400px) {
+    .container.member {
+        .side {
+            .top {
+                flex-direction: row;
+
+                .avatar {
+                    max-width: 12rem;
+                }
+            }
+        }
+    }
+}
+
 @media (min-width: 800px) {
     .container.member {
         flex-direction: row;
@@ -246,10 +274,13 @@ input {
         .side {
             width: 30%;
             max-width: 15rem;
-            flex-direction: column;
 
-            .avatar {
-                max-width: 100%;
+            .top {
+                flex-direction: column;
+    
+                .avatar {
+                    max-width: 100%;
+                }
             }
         }
 

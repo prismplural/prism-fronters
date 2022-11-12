@@ -13,23 +13,25 @@
 
 <div class="container member">
     <section class="side">
-        {#if member.avatar_url}
-        <img class="avatar" src={member.avatar_url} alt={`${member.name}'s avatar`}>
-        {/if}
-        <div class="info">
-            {#if getName(member)}
-            <h3>{getName(member)}</h3>
-            <hr/>
+        <div class="top">
+            {#if member.avatar_url}
+            <img class="avatar" src={member.avatar_url} alt={`${member.name}'s avatar`}>
             {/if}
-            {#if getEmojis(member)}
-            <span><b>Emojis:</b> {@html convertToHTML(getEmojis(member))}</span>
-            {/if}
-            {#if getBirthday(member)}
-            <span><b>Birthday:</b> {convertToHTML(getBirthday(member))}</span>
-            {/if}
-            {#if getPronouns(member)}
-                <span><b>Pronouns:</b> {@html convertToHTML(getPronouns(member))}</span>
-            {/if}
+            <div class="info">
+                {#if getName(member)}
+                <h3>{getName(member)}</h3>
+                <hr/>
+                {/if}
+                {#if getEmojis(member)}
+                <span><b>Emojis:</b> {@html convertToHTML(getEmojis(member))}</span>
+                {/if}
+                {#if getBirthday(member)}
+                <span><b>Birthday:</b> {convertToHTML(getBirthday(member))}</span>
+                {/if}
+                {#if getPronouns(member)}
+                    <span><b>Pronouns:</b> {@html convertToHTML(getPronouns(member))}</span>
+                {/if}
+            </div>
         </div>
         <span style="align-self: center;">(<a href="/">Back to home</a>)</span>
     </section>
