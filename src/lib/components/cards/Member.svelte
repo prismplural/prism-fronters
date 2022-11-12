@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { goto } from '$app/navigation';
     import type { Member } from '$lib/types';
     import toHtml from 'discord-markdown';
 
@@ -30,6 +31,7 @@
                 <span><b>Pronouns:</b> {@html convertToHTML(getPronouns(member))}</span>
             {/if}
         </div>
+        <span style="align-self: center;">(<a href="/">Back to home</a>)</span>
     </section>
     <div class="content">
     {#if getDescription(member)}

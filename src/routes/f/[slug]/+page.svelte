@@ -1,28 +1,43 @@
 <script lang="ts">
     import { onMount } from 'svelte';
+    import { page } from '$app/stores';
 
     import GlobalStyle from '$lib/styles/global.scss';
     import Front from '$lib/components/cards/Front.svelte';
-    import { buildFrontEmbedTitle, buildFrontPageTitle } from '$lib/functions/strings/system';
-    import { buildSwitchOutText, buildFrontEmbedDescription, getAvatar, getColor } from '$lib/functions/strings/member';
+    import { buildFrontEmbedTitle, buildFrontPageTitle, buildSwitchOutTitle } from '$lib/functions/strings/system';
+    import { buildFrontEmbedDescription, getAvatar, getColor } from '$lib/functions/strings/member';
 
     export let data;
 
+    let includeSystem = false;
+
     let url = "";
     onMount(() => url = window.location.href);
+
+    if ($page.url.searchParams.get('s') || $page.url.searchParams.get('system') || $page.url.searchParams.get('sys')) {
+        includeSystem = true;
+    }
 </script>
 
-<h2>{buildFrontPageTitle(data.system)}</h2>
+{#if data.front.members.length > 0}
+    <h2>{buildFrontPageTitle(data.system)}</h2>
+{:else}
+    <h2>{buildSwitchOutTitle(data.system)}</h2>
+{/if}
+<span>(<a href="/">Back to home</a>)</span>
 <div class="front container">
-    {#if data.front.members}
-    {#each data.front.members as member}
-        <Front {member}/>
-    {/each}
-    {:else}
-        <h3>{@html buildSwitchOutText()}</h3>
+    {#if includeSystem}
+        <Front member={data.system} system={true}/>
+    {/if}
+    {#if data.front.members.length > 0}
+        {#each data.front.members as member}
+            <Front {member}/>
+        {/each}
     {/if}
 </div>
-<span class="tinytext">(Click a card to view member info)</span>
+{#if data.front.members.length > 0 || includeSystem}
+    <span class="tinytext">(Click a card to view member info)</span>
+{/if}
 
 <svelte:head>
     <title>{buildFrontPageTitle(data.system)}</title>

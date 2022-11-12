@@ -4,17 +4,18 @@
     import { getName, getPronouns, getAvatar, getColor } from '$lib/functions/strings/member'
 
     export let member: Member;
+    export let system = false;
+
+    let name = member.name ?? member.id;
 
 </script>
-<a class="front link" href={`/m/${member.id}`} >
+<a class="front link" href={system? `/f/${member.id}` : `/m/${member.id}`} >
     <div class="card front" style={getColor(member) ? `border-bottom: 4px solid ${getColor(member)};` : ""}>
         {#if getAvatar(member)}
-        <img class="avatar" src={getAvatar(member)} alt={`${member.name}'s avatar`}>
+        <img class="avatar" src={getAvatar(member)} alt={`${name}'s avatar`}>
         {/if}
         <div class="desc">
-            {#if getName(member)}
-            <h3 class="name">{@html convertToHTML(getName(member))}</h3>
-            {/if}
+            <h3 class="name">{@html convertToHTML(name)}</h3>
             {#if getPronouns(member)}
             <span class="pronouns">{@html convertToHTML(getPronouns(member))}</span>
             {/if}
