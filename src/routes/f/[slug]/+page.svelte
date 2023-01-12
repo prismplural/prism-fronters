@@ -1,6 +1,7 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import { page } from '$app/stores';
+    import theme from "$lib/functions/store/theme";
 
     import GlobalStyle from '$lib/styles/global.scss';
     import Front from '$lib/components/cards/Front.svelte';
@@ -17,26 +18,37 @@
     if ($page.url.searchParams.get('s') || $page.url.searchParams.get('system') || $page.url.searchParams.get('sys')) {
         includeSystem = true;
     }
+
+    onMount(() => url = window.location.href);
+
+    const changeTheme = () => {
+		if ($theme == "dark") {
+			theme.set("light");
+		} else if ($theme == "light") {
+			theme.set("dark");
+		}
+		
+		setBodyTheme(document.body as HTMLBodyElement);
+	}
+
+	function setBodyTheme(body: HTMLBodyElement) {
+		body.className = $theme + "-mode";
+	}
 </script>
 
-{#if data.front.members.length > 0}
-    <h2>{buildFrontPageTitle(data.system)}</h2>
-{:else}
-    <h2>{buildSwitchOutTitle(data.system)}</h2>
-{/if}
-<span>(<a href="/">Back to home</a>)</span>
+<h2>{buildFrontPageTitle(data.system)}</h2>
 <div class="front container">
-    {#if includeSystem}
-        <Front member={data.system} system={true}/>
-    {/if}
-    {#if data.front.members.length > 0}
-        {#each data.front.members as member}
-            <Front {member}/>
-        {/each}
+    {#if data.front.members}
+    {#each data.front.members as member}
+        <Front {member}/>
+    {/each}
+    {:else}
+        <h3>{@html buildSwitchOutTitle(data.system)}</h3>
     {/if}
 </div>
 {#if data.front.members.length > 0 || includeSystem}
-    <span class="tinytext">(Click a card to view member info)</span>
+<span class="tinytext">(Click a card to view member info)</span>
+<button class="button" style="margin: 1rem auto 0 auto;" on:click={() => changeTheme()}>Theme</button>
 {/if}
 
 <svelte:head>
@@ -48,3 +60,5 @@
     <meta property="og:image" content={data.front.members && data.front.members.length > 0 ? getAvatar(data.front.members[0]) : ""} />
     <meta name="theme-color" content={data.front.members && data.front.members.length > 0 ? getColor(data.front.members[0], true) : ""}>
 </svelte:head>
+
+<svelte:body use:setBodyTheme/>
