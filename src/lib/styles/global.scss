@@ -1,4 +1,41 @@
-@import "light.scss";
+:root {
+    --background: #252525;
+    --text: #D4D4D4;
+    --block: #191919;
+    --highlight: #05aab0;
+    --scrollbar: #37352F;
+    --button-hover: #057ab0;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --background: #F1F1EF;
+        --text: #37352F;
+        --block: hwb(0 100% 0%);
+        --highlight: #05aab0;
+        --scrollbar: #d4d4d4;
+        --button-hover: #057ab0;
+    }
+}
+
+.light-mode {
+    --background: #F1F1EF;
+    --text: #37352F;
+    --block: #FFFFFF;
+    --highlight: #05aab0;
+    --scrollbar: #d4d4d4;
+    --button-hover: #057ab0;
+}
+
+
+.dark-mode {
+    --background: #252525;
+    --text: #D4D4D4;
+    --block: #191919;
+    --highlight: #05aab0;
+    --scrollbar: #37352F;
+    --button-hover: #057ab0;
+}
 
 * {
     box-sizing: border-box;
@@ -22,8 +59,8 @@ body {
     flex: 1;
     margin: 0;
     font-family: "ui-sans-serif", sans-serif;
-    background-color: $background;
-    color: $text;
+    background-color: var(--background);
+    color: var(--text);
     display: flex;
     flex-direction: column;
 }
@@ -44,7 +81,7 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
-    background-color: $block;
+    background-color: var(--block);
     border-radius: 4px;
     flex: 1;
 
@@ -72,21 +109,21 @@ body {
 
 .front.link {
     border-radius: 4px;
-    color: $text;
+    color: var(--text);
     display: flex;
     flex-direction: column;
 }
 
 .front.link:hover, .front.link:focus {
     outline: none !important;
-    box-shadow: 0px 0px 0px 3px rgba($highlight, 0.6);
+    box-shadow: 0px 0px 0px 3px rgba(#05aab0, 0.6);
     transform: scale(102%);
     transition: transform 0.1s ease-out;
 }
 
 .tinytext {
     font-size: 0.8rem;
-    color:rgba($text, 0.75)
+    color:rgba(var(--text), 0.75)
 }
 
 .container.member {
@@ -126,7 +163,7 @@ body {
                 padding: 1rem;
                 padding-right: 0.5rem;
                 border-radius: 4px;
-                background-color: $block;
+                background-color: var(--block);
                 flex: 1;
 
                 h3 {
@@ -137,7 +174,7 @@ body {
                     border: none;
                     height: 2px;
                     width: 100%;
-                    background-color: $background;
+                    background-color: var(--background);
                 }
             }
         }
@@ -154,7 +191,7 @@ body {
             padding: 1rem;
             padding-right: 0.5rem;
             border-radius: 4px;
-            background-color: $block;
+            background-color: var(--block);
 
 
             div {
@@ -162,7 +199,7 @@ body {
                 height: 100%;
                 padding-right: 0.5rem;
                 scrollbar-width: thin;
-                scrollbar-color: darken($background, 7%) transparent;
+                scrollbar-color: var(--scrollbar) transparent;
             }
 
             ::-webkit-scrollbar {
@@ -172,7 +209,7 @@ body {
 
             ::-webkit-scrollbar-thumb {
                 border-radius: 3.5px;
-                background-color: darken($background, 7%);
+                background-color: var(--scrollbar);
             }
 
         }
@@ -215,7 +252,7 @@ body {
         flex: 1;
         padding: 1rem;
         border-radius: 4px;
-        background-color: $block;
+        background-color: var(--block);
     }
 }
 
@@ -223,14 +260,14 @@ input {
     padding: 0.5rem;
     border:rgba(160, 160, 160, 0.3);
     border-radius: 4px;
-    background-color: $background;
+    background-color: var(--background);
 }
 
 .button {
     border: none;
     padding: 0.75rem;
-    color: $block;
-    background: $highlight;
+    color: #ffffff;
+    background: var(--highlight);
     border-radius: 4px;
     text-align: center;
     cursor: pointer;
@@ -238,8 +275,8 @@ input {
 }
 
 .button:hover {
- background-color: adjust-hue($highlight, 20);
- color: $block;
+ background-color: var(--button-hover);
+ color: #ffffff;
  transition: all 0.1s ease-out;
  transform: scale(105%);
 }
@@ -317,15 +354,15 @@ input {
 blockquote {
     margin: 0.75rem 0;
     padding: 0 0 0 1.5rem;
-    border-left: 4px solid $background;
+    border-left: 4px solid var(--background);
 }
 
 a {
-    color: $highlight;
+    color: var(--highlight);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 a:hover {
-    color: adjust-hue($highlight, 20);
+    color: var(--button-hover);
 }
