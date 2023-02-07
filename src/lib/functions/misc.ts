@@ -1,6 +1,7 @@
+import { browser } from "$app/environment";
 import type { Writable } from "svelte/store";
 
-let theme: string = "dark";
+let theme: string = browser ? localStorage.getItem("pk-fulmn-theme") ?? "dark" : "dark";
 
 export default (store: Writable<string>) => {
     let value = "dark";
