@@ -3,7 +3,6 @@
     import { page } from '$app/stores';
     import theme from "$lib/functions/store/theme";
 
-    import GlobalStyle from '$lib/styles/global.scss';
     import Front from '$lib/components/cards/Front.svelte';
     import { buildFrontEmbedTitle, buildFrontPageTitle, buildSwitchOutTitle } from '$lib/functions/strings/system';
     import { buildFrontEmbedDescription, getAvatar, getColor } from '$lib/functions/strings/member';
@@ -18,8 +17,6 @@
     if ($page.url.searchParams.get('s') || $page.url.searchParams.get('system') || $page.url.searchParams.get('sys')) {
         includeSystem = true;
     }
-
-    onMount(() => url = window.location.href);
 
     const changeTheme = () => {
 		if ($theme == "dark") {
@@ -38,7 +35,10 @@
 
 <h2>{buildFrontPageTitle(data.system)}</h2>
 <div class="front container">
-    {#if data.front.members}
+    {#if includeSystem}
+        <Front member={data.system} system={true}/>
+    {/if}
+    {#if data.front.members.length > 0}
     {#each data.front.members as member}
         <Front {member}/>
     {/each}

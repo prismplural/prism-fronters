@@ -1,5 +1,4 @@
 <script lang="ts">
-    import GlobalStyle from '$lib/styles/global.scss';
     import { page } from '$app/stores';
 </script>
 

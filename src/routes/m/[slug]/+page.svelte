@@ -1,7 +1,6 @@
 <script lang="ts">
     import { onMount } from 'svelte';
 
-    import GlobalStyle from '$lib/styles/global.scss';
     import Member from '$lib/components/cards/Member.svelte';
     import { buildMemberPageTitle, buildMemberEmbedTitle, buildMemberEmbedDescription, getAvatar, getColor } from '$lib/functions/strings/member';
 

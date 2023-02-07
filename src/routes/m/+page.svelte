@@ -1,6 +1,5 @@
 <script lang="ts">
     import { enhance } from '$app/forms';
-    import GlobalStyle from '$lib/styles/global.scss';
 </script>
 
 <main class="container info">

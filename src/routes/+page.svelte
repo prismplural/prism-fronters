@@ -1,6 +1,5 @@
 <script lang="ts">
     import theme from "$lib/functions/store/theme";
-    import GlobalStyle from '$lib/styles/global.scss';
 
     const changeTheme = () => {
 		if ($theme == "dark") {
