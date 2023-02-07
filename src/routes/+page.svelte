@@ -8,6 +8,7 @@
     <section class="content">
         <p>A small website that lets you view some PluralKit data.</p>
         <nav class="row">
+            <a class="button" href="/s">System</a>
             <a class="button" href="/f">Front</a>
             <a class="button" href="/m">Member</a>
             <a class="button" href="https://codeberg.org/fulmine/pk-fulmine">Source</a>

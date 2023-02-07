@@ -21,6 +21,7 @@
 </script>
 
 <h2>{buildFrontPageTitle(data.system)}</h2>
+<span style="margin: 1rem auto 0 auto;">(<a href={`/s/${data.system.id}`}>Back to system</a>)</span>
 <div class="front container">
     {#if includeSystem}
         <Front member={data.system} system={true}/>
