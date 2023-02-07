@@ -3,6 +3,7 @@
     import { page } from '$app/stores';
     import theme from "$lib/functions/store/theme";
 
+    import changeTheme from '$lib/functions/misc';
     import Front from '$lib/components/cards/Front.svelte';
     import { buildFrontEmbedTitle, buildFrontPageTitle, buildSwitchOutTitle } from '$lib/functions/strings/system';
     import { buildFrontEmbedDescription, getAvatar, getColor } from '$lib/functions/strings/member';
@@ -17,20 +18,6 @@
     if ($page.url.searchParams.get('s') || $page.url.searchParams.get('system') || $page.url.searchParams.get('sys')) {
         includeSystem = true;
     }
-
-    const changeTheme = () => {
-		if ($theme == "dark") {
-			theme.set("light");
-		} else if ($theme == "light") {
-			theme.set("dark");
-		}
-		
-		setBodyTheme(document.body as HTMLBodyElement);
-	}
-
-	function setBodyTheme(body: HTMLBodyElement) {
-		body.className = $theme + "-mode";
-	}
 </script>
 
 <h2>{buildFrontPageTitle(data.system)}</h2>
@@ -48,7 +35,7 @@
 </div>
 {#if data.front.members.length > 0 || includeSystem}
 <span class="tinytext">(Click a card to view member info)</span>
-<button class="button" style="margin: 1rem auto 0 auto;" on:click={() => changeTheme()}>Theme</button>
+<button class="button" style="margin: 1rem auto 0 auto;" on:click={() => changeTheme(theme)}>Theme</button>
 {/if}
 
 <svelte:head>
@@ -60,5 +47,3 @@
     <meta property="og:image" content={data.front.members && data.front.members.length > 0 ? getAvatar(data.front.members[0]) : ""} />
     <meta name="theme-color" content={data.front.members && data.front.members.length > 0 ? getColor(data.front.members[0], true) : ""}>
 </svelte:head>
-
-<svelte:body use:setBodyTheme/>

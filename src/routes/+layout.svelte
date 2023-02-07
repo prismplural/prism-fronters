@@ -2,6 +2,7 @@
     import NProgress from 'nprogress';
 	import { navigating } from '$app/stores';
 	import GlobalStyle from '$lib/styles/global.scss';
+	import { setBodyTheme } from '$lib/functions/misc';
 
 	// NProgress css
 	import 'nprogress/nprogress.css';

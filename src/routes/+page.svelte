@@ -1,19 +1,6 @@
 <script lang="ts">
     import theme from "$lib/functions/store/theme";
-
-    const changeTheme = () => {
-		if ($theme == "dark") {
-			theme.set("light");
-		} else if ($theme == "light") {
-			theme.set("dark");
-		}
-		
-		setBodyTheme(document.body as HTMLBodyElement);
-	}
-
-	function setBodyTheme(body: HTMLBodyElement) {
-		body.className = $theme + "-mode";
-	}
+    import changeTheme from '$lib/functions/misc';
 </script>
 
 <main class="container info">
@@ -24,7 +11,7 @@
             <a class="button" href="/f">Front</a>
             <a class="button" href="/m">Member</a>
             <a class="button" href="https://codeberg.org/fulmine/pk-fulmine">Source</a>
-            <button class="button" on:click={() => changeTheme()}>Theme</button>
+            <button class="button" on:click={() => changeTheme(theme)}>Theme</button>
         </nav>
     </section>
 </main>
@@ -39,4 +26,4 @@
     <meta name="theme-color" content="#ffffff">
 </svelte:head>
 
-<svelte:body use:setBodyTheme />
+<svelte:body/>

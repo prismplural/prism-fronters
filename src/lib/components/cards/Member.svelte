@@ -2,25 +2,11 @@
     import type { Member } from '$lib/types';
     import theme from '$lib/functions/store/theme';
 
+    import changeTheme from '$lib/functions/misc';
     import { convertToHTML } from '$lib/functions/strings/common';
     import { getEmojis, getBirthday, getPronouns, getDescription, getColor, getBanner, getName } from '$lib/functions/strings/member';
 
     export let member: Member;
-
-    
-	const changeTheme = () => {
-		if ($theme == "dark") {
-			theme.set("light");
-		} else if ($theme == "light") {
-			theme.set("dark");
-		}
-		
-		setBodyTheme(document.body as HTMLBodyElement);
-	}
-
-	function setBodyTheme(body: HTMLBodyElement) {
-		body.className = $theme + "-mode";
-	}
 </script>
 
 <div class="container member">
@@ -47,7 +33,7 @@
         </div>
         
         <div style="display: flex; flex-direction: column; gap: 1rem;">
-            <button class="button" style="width: auto;" on:click={() => changeTheme()}>Theme</button>
+            <button class="button" style="width: auto;" on:click={() => changeTheme(theme)}>Theme</button>
             <span style="align-self: center;">(<a href={`/f/${member.system}`}>Back to system</a>)</span>
         </div>
     </section>
@@ -68,5 +54,3 @@
     {/if}
     </div>
 </div>
-
-<svelte:body use:setBodyTheme/>
