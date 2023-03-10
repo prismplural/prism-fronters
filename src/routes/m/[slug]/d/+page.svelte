@@ -2,7 +2,7 @@
     import DiscordCard from "$lib/components/cards/DiscordCard.svelte";
     import { page } from "$app/stores";
     import { createCard } from "$lib/functions/discordCard";
-  import { buildMemberEmbedDescription, buildMemberEmbedTitle, buildMemberPageTitle, getAvatar, getColor } from "$lib/functions/strings/member";
+  import { buildMemberEmbedDescription, getAvatar, getColor } from "$lib/functions/strings/member";
 
     export let data: any;
     

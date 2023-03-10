@@ -1,7 +1,7 @@
 <script lang="ts">
     let mid = "iyhda";
 
-    let gotoUrl = `./m/${mid}/d`;
+    let gotoUrl = `../m/${mid}/d`;
     let visibleUrl = `https://pk.fulmine.xyz/m/${mid}/d`;
 
     // options time
@@ -31,7 +31,7 @@
         let querystring = "";
         let params: string[] = [];
 
-        params.push("t=" + theme);
+        if (theme !== "dark") params.push("t=" + theme);
         if (showGroups === true) params.push("g=" + groupshow);
         if (showNote === true) params.push("n=show");
         if (showJoin === true) params.push("j=show");
@@ -53,7 +53,7 @@
             }
         }
         
-        gotoUrl = `./m/${mid}/d${querystring}`;
+        gotoUrl = `../m/${mid}/d${querystring}`;
         visibleUrl = `https://pk.fulmine.xyz/m/${mid}/d${querystring}`;
 
         params = [];
@@ -62,7 +62,7 @@
 </script>
 
 <main class="container info">
-    <h1>Fake Discord Profile</h1>
+    <h1>Fake Discord Member Profile</h1>
     <span>(Javascript required)</span>
     <section class="content">
         <div class="row">

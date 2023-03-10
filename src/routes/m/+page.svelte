@@ -4,6 +4,7 @@
 
 <main class="container info">
     <h1>Member</h1>
+    <span>Want something more fun? Here's a <a href="./d/m">fake discord profile creator</a>!</span>
     <section class="content">
         <label for="front-sid">Enter a member id to view that member.</label>
         <form method="POST" use:enhance >
