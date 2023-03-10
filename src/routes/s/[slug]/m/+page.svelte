@@ -5,7 +5,8 @@
     import theme from "$lib/functions/store/theme";
 
     import changeTheme from '$lib/functions/misc';
-    import Member from '$lib/components/cards/Front.svelte';
+    import type { Member } from '$lib/types';
+    import MemberCard from '$lib/components/cards/Front.svelte';
     import { buildSystemListTitle, buildSystemListDescription, getIcon, getColor } from '$lib/functions/strings/system';
 
     export let data;
@@ -44,10 +45,10 @@
     <hr/>
     <div class="front container">
         {#if includeSystem}
-        <Member member={data.system} system={true}/>
+        <MemberCard member={data.system} system={true}/>
         {/if}
         {#each getListFromLetter(data.members, "", true) as member}
-                <Member {member}/>
+                <MemberCard {member}/>
         {/each}
     </div>
     {/if}
@@ -57,7 +58,7 @@
         <hr/>
         <div class="front container">
         {#each getListFromLetter(data.members, letter) as member}
-            <Member {member}/>
+            <MemberCard {member}/>
         {/each}
     </div>
     {/if}

@@ -40,6 +40,19 @@ export function getBirthday(member: Member) {
     return "";
 }
 
+// Parses a member's birthday
+export function getCreated(member: Member) {
+    if (member.created) {
+        let str = moment(member.created, "YYYY-MM-DD").format("MMM D, YYYY");
+
+        if (str.endsWith(', 0004')) str = str.replace(', 0004', "");
+    
+        return str;
+    }
+    return "";
+}
+
+
 // Parses a member's pronouns, just returns the pronouns by default.
 export function getPronouns(member: Member) {
     return member.pronouns ? member.pronouns : "";

@@ -264,6 +264,35 @@ input {
     color: var(--text);
 }
 
+input[type="checkbox"] {
+    -moz-appearance:initial;
+    border: 2px solid #00000000;
+    position: relative;
+    padding: 0.625rem;
+    background-color: var(--text);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+input[type="checkbox"]:hover {
+    border: 2px solid var(--text);
+}
+
+input[type="checkbox"]:checked {
+    background-color: var(--highlight);
+}
+
+input[type="checkbox"]:checked:after {
+    position: absolute;
+    text-align: center;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    content: "✕";
+    font-size: 1rem;
+}
+
 .button {
     border: none;
     padding: 0.75rem;
@@ -367,4 +396,17 @@ a {
 
 a:hover {
     color: var(--button-hover);
+}
+
+// discord card stuff
+
+.embed-section blockquote {
+    border-left: 4px solid var(--divider-color);
+}
+.embed-body a {
+    color: #0088FC;
+}
+
+.embed-body a:hover {
+    text-decoration: underline;
 }

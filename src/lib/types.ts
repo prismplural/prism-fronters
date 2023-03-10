@@ -31,3 +31,15 @@ export interface System {
     avatar_url?: string,
     banner?: string
 }
+
+export interface Group {
+    name: string,
+    uuid?: string,
+    icon?: string,
+    id: string,
+    description?: string
+    banner?: string,
+    color?: string,
+    members?: Member[],
+    display_name?: string
+}
