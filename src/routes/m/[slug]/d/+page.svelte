@@ -28,7 +28,7 @@
 <style lang="scss">
     .center {
         width: 100vw;
-        height: 100vh;
+        min-height: 100vh;
         background-color: #999999;
         display: flex;
         flex-direction: column;
