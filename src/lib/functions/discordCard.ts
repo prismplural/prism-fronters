@@ -119,7 +119,7 @@ function createRoles(params: URLSearchParams, groups: Group[]) {
 
             return {
                 name: groupName,
-                color: g.color ? "#" + g.color : "#00000000",
+                color: g.color ? "#" + g.color : undefined,
                 full: fullWidth
             };
         })

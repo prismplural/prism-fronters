@@ -19,7 +19,7 @@ export default interface DiscordCardSettings {
         notes: string,
     }
     roles: {
-        color: string,
+        color?: string,
         name: string
         full?: boolean
     }[],

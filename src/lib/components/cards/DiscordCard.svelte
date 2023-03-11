@@ -149,7 +149,7 @@
                 <div class="embed-role-container">
                     {#each card.roles as role}
                         <div class={`embed-role ${card.colors.primary ? "embed-role-outline" : "embed-role-full"} ${role.full ? "embed-role-width" : ""}`}>
-                            <div class="embed-role-button" style={"background-color: " + role.color}></div>
+                            <div class="embed-role-button" style={role.color ? `background-color: ${role.color};` : "box-shadow:  inset 0 0 0 1px var(--divider-color);" }></div>
                             <span class="embed-role-name">{@html twemoji.parse(toHTML(role.name, { embed: true}))}</span>
                         </div>
                     {/each}
