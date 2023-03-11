@@ -2,7 +2,7 @@
     import DiscordCard from "$lib/components/cards/DiscordCard.svelte";
     import { page } from "$app/stores";
     import { createCard } from "$lib/functions/discordCard";
-  import { buildMemberEmbedDescription, getAvatar, getColor } from "$lib/functions/strings/member";
+    import { buildMemberEmbedDescription, getAvatar, getColor } from "$lib/functions/strings/member";
 
     export let data: any;
     
@@ -10,11 +10,19 @@
     const params = $page.url.searchParams;
     const light = params.get("t") && params.get("t") === "light" ? true : false;
 
-    const card = createCard(params, data.member, data.groups);
+    async function getCard() {
+        return await createCard(params, data.member, data.groups);
+    }
+
+    const cardPromise = getCard();
 </script>
 
 <div class="center" style={light ? "background-color: #ffffff" : "background-color: #000000"}>
-    <DiscordCard card={card} />
+    {#await cardPromise}
+        <span style={light ? "color: #666666;" : "color: #dddddd;"}>loading...</span>
+    {:then card}
+        <DiscordCard card={card} />
+    {/await}
 </div>
 
 <style lang="scss">

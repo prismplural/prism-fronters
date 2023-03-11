@@ -1,12 +1,11 @@
 import { defaultCard, Theme } from "$lib/cardtypes";
 import type DiscordCardSettings from "$lib/cardtypes";
 import type { Member, System, Group } from "$lib/types";
-import { getBirthday, getCreated } from "./strings/member";
 
 const hexColorRegex = /^#?(?:[0-9a-fA-F]{3}){1,2}$/;
 const defaultColor = "#dddddd";
 
-export function createCard(params: URLSearchParams, data: Member | System | Group, groups?: Group[]) {
+export async function createCard(params: URLSearchParams, data: Member | System | Group, groups?: Group[]) {
     let card: DiscordCardSettings = JSON.parse(JSON.stringify(defaultCard));
 
     if (params.get("t") && params.get("t") === "light")
@@ -17,10 +16,8 @@ export function createCard(params: URLSearchParams, data: Member | System | Grou
     card.info.status = "";
     card.info.emoji = "";
 
+    card.info.nickname = (data as Member).display_name ?? "";
     card.info.username = data.name ?? data.id;
-    if ((data as Member).display_name && (data as Member).display_name !== data.name) {
-        card.info.nickname = (data as Member).display_name ?? "";
-    }
 
     if ((data as Member).avatar_url || (data as Group).icon) {
         card.avatar = (data as Member).avatar_url ?? (data as Group).icon ?? "";
@@ -51,12 +48,14 @@ export function createCard(params: URLSearchParams, data: Member | System | Grou
 
 
     if (params.get("j")) {
+        const { getBirthday, getCreated } = await import('$lib/functions/strings/member');
         if ((data as Member).birthday) {
             card.joindate.server.date = getBirthday(data as Member);
             card.joindate.server.emoji = "🎂";
         }
     
         if ((data as Member).created) {
+            
             card.joindate.global.date = getCreated(data as Member);
             card.joindate.global.emoji = "📒";
         }

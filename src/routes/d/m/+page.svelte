@@ -14,9 +14,9 @@
     let hideDesc = false;
     let descCutoff = null;
     let useNitro = false;
-    let primaryColor = null;
-    let secondaryColor = null;
-    let bannerColor = null;
+    let primaryColor: string | null = null;
+    let secondaryColor: string | null = null;
+    let bannerColor: string | null = null;
 
     $: if (theme || groupshow || showNote || showJoin || showGroups || hideBanner || hideDesc || descCutoff || useNitro || primaryColor || secondaryColor || bannerColor) {
         generateUrl(mid);
@@ -39,9 +39,9 @@
         if (hideDesc === true) params.push("c=hide")
         else if (descCutoff) params.push("c=" + descCutoff);
         if (useNitro === true) params.push("d=nitro");
-        if (primaryColor) params.push("pc=" + primaryColor);
-        if (secondaryColor) params.push("sc=" + secondaryColor);
-        if (bannerColor) params.push("bc=" + bannerColor);
+        if (primaryColor) params.push(primaryColor.startsWith("#") ? `pc=${primaryColor.slice(1, primaryColor.length)}` : `pc=${primaryColor}`);
+        if (secondaryColor) params.push(secondaryColor.startsWith("#") ? `sc=${secondaryColor.slice(1, secondaryColor.length)}` : `sc=${secondaryColor}`);
+        if (bannerColor) params.push(bannerColor.startsWith("#") ? `bc=${bannerColor.slice(1, bannerColor.length)}` : `bc=${bannerColor}`);
         
 
         if (params.length > 0) {

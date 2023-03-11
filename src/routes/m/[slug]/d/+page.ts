@@ -1,7 +1,7 @@
 import { error } from '@sveltejs/kit';
 import type { Group } from '$lib/types';
 
-export async function load( {params, fetch} ) {
+export async function load( {params, fetch, url} ) {
     const mid = params.slug.toLowerCase();
 
     let member: any;
@@ -18,20 +18,24 @@ export async function load( {params, fetch} ) {
         throw error(500, "Internal server error. This this site's fault. Please report it to the developers!");
     });
 
-    let groups: Group[];
-    groups = await fetch(`https://api.pluralkit.me/v2/members/${mid}/groups`, {
-        headers: {
-            'origin': 'https://pk.fulmine.xyz'
-            }
-    })
-    .then(resp => {
-        if (resp.status === 500) throw error(500, "Internal server error. This is on PluralKit's end.");
-        if (resp.ok) return resp.json();
-        if (resp.status < 500) return [];
-        throw error(500, "Internal server error. This this site's fault. Please report it to the developers!");
-    });
+    let groups: Group[] = [];
+    if (url.searchParams.get("g")) {
+        console.log("Fetching groups!");
 
-    groups = groups.sort((a, b) => a.name.localeCompare(b.name));
+        groups = await fetch(`https://api.pluralkit.me/v2/members/${mid}/groups`, {
+            headers: {
+                'origin': 'https://pk.fulmine.xyz'
+                }
+        })
+        .then(resp => {
+            if (resp.status === 500) throw error(500, "Internal server error. This is on PluralKit's end.");
+            if (resp.ok) return resp.json();
+            if (resp.status < 500) return [];
+            throw error(500, "Internal server error. This this site's fault. Please report it to the developers!");
+        });
+    
+        groups = groups.sort((a, b) => a.name.localeCompare(b.name));
+    }
 
     return {
         member: member,
