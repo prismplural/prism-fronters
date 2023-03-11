@@ -275,7 +275,6 @@
     }
 
     .embed-section {
-        padding-top: 12px;
         color: var(--text-normal);
     }
 
