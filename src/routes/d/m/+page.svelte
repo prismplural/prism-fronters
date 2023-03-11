@@ -23,7 +23,7 @@
     }
 
     function updateMid(value) {
-        mid = value ? value : "exmpl";
+        mid = value ? value : "iyhda";
         generateUrl(mid);
     }
 
