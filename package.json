@@ -28,7 +28,7 @@
 		"emoji-regex": "^10.1.0",
 		"moment": "^2.29.4",
 		"sass": "^1.54.9",
-		"svelte-lazy": "^1.1.0",
+		"svelte-lazy": "^1.2.1",
 		"twemoji": "^14.0.2"
 	}
 }
