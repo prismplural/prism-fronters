@@ -33,6 +33,15 @@ export async function createCard(params: URLSearchParams, data: Member | System 
             let splitDesc = description.split("\n", parseInt(params.get("c") ?? ""));
             description = splitDesc.join("\n");
         }
+
+        let status = "";
+        if (params.get("s") &&  !Number.isNaN(parseInt(params.get("s") ?? ""))) {
+            let index = parseInt(params.get("s") ?? "");
+            let statusLine = description.split("\n", index ?? "");
+            status = statusLine[statusLine.length - 1];
+        }
+
+        card.info.status = status;
         card.info.about = description;
     }
 

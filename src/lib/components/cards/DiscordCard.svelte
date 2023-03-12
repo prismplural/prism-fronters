@@ -101,7 +101,7 @@
                         {:else}
                             <img class="emoji" draggable="false" src={card.info.emoji_url} alt="status emoji">
                         {/if}
-                        {card.info.status}
+                        {@html toHTML(card.info.status, { embed: true })}
                     </span>
                 {:else if card.info.emoji || card.info.emoji_url}
                     <div class="embed-emoji-status">
