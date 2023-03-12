@@ -159,7 +159,7 @@
             {#if card.info.notes}
                 <div class="embed-section">
                     <h2 class="embed-section-title">Note</h2>
-                    <div class="embed-about" style="font-size: 12px;">
+                    <div class="embed-about embed-note">
                         {@html twemoji.parse(toHTML(card.info.notes, { embed: true }))}
                     </div>
                 </div>
@@ -336,5 +336,10 @@
         column-gap: 8px;
         align-items: center;
         font-size: 14px;
+    }
+
+    .embed-note {
+        font-size: 12px;
+        overflow-wrap: break-word;
     }
 </style>
