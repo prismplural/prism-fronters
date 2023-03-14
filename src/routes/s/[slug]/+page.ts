@@ -25,6 +25,7 @@ export async function load( {params, fetch} ) {
     })
     .then(resp => {
         if (resp.status === 500) throw error(500, "Internal server error. This is on PluralKit's end.");
+        if (resp.status === 204) return { members: [] }
         if (resp.ok) return resp.json();
         if (resp.status < 500) return { members: [] };
         throw error(500, "Internal server error. This this site's fault. Please report it to the developers!");
