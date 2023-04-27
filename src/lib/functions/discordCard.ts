@@ -19,8 +19,8 @@ export async function createCard(params: URLSearchParams, data: Member | System 
     card.info.nickname = (data as Member).display_name ?? "";
     card.info.username = data.name ?? data.id;
 
-    if ((data as Member).avatar_url || (data as Group).icon) {
-        card.avatar = (data as Member).avatar_url ?? (data as Group).icon ?? "";
+    if ((data as Member).webhook_avatar_url || (data as Member).avatar_url || (data as Group).icon) {
+        card.avatar = (data as Member).webhook_avatar_url ?? (data as Member).avatar_url ?? (data as Group).icon ?? "";
     }
 
     if (data.banner && !(params.get("b") && params.get("b") === "hide")) {
