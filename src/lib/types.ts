@@ -10,7 +10,8 @@ export interface Member {
     color?: string,
     pronouns?: string,
     created?: string,
-    system: string
+    system: string,
+    webhook_avatar_url: string
 }
 
 export interface Front {

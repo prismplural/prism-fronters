@@ -59,7 +59,8 @@ export function getPronouns(member: Member) {
 }
 
 // Returns the member's avatar
-export function getAvatar(member: Member) {
+export function getAvatar(member: Member, webhook: boolean = false) {
+    if (webhook && member.webhook_avatar_url) return member.webhook_avatar_url 
     return member.avatar_url ? member.avatar_url : "";
 }
 

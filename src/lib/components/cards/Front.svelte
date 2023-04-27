@@ -12,7 +12,7 @@
 <a class="front link" href={system? `/f/${member.id}` : `/m/${member.id}`} >
     <div class="card front" style={getColor(member) ? `border-bottom: 4px solid ${getColor(member)};` : ""}>
         {#if getAvatar(member)}
-        <img class="avatar" style="width: 100%; aspect-ratio: 1 / 1;" src={getAvatar(member)} alt={`${name}'s avatar`}>
+        <img class="avatar" style="width: 100%; aspect-ratio: 1 / 1;" src={getAvatar(member, true)} alt={`${name}'s avatar`}>
         {/if}
         <div class="desc">
             <h3 class="name">{@html convertToHTML(name)}</h3>
