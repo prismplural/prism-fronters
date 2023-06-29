@@ -15,6 +15,13 @@
                 <label for="f-system">Show system card</label> <input type="checkbox" id="f-system" name="system">
             </div>
             <div class="row" style="margin-bottom: 0.5rem; margin-top: 0.5rem">
+                <label for="f-layout">Cards used on main page:</label>
+                <select id="f-layout" name="cards">
+                    <option value="">Small (default)</option>
+                    <option value="f">Full PluralKit embed</option>
+                </select>
+            </div>
+            <div class="row" style="margin-bottom: 0.5rem; margin-top: 0.5rem">
                 <label for="f-layout">Layout used in linked cards:</label>
                 <select id="f-layout" name="layout">
                     <option value="">Default</option>

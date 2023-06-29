@@ -5,6 +5,7 @@
 
     export let system: System;
     export let front: any = undefined;
+    export let linkParams: string[];
 </script>
 
 <div class="container pk" style={`border-left: 5px solid #${system.color}`}>
@@ -15,7 +16,7 @@
         </span>
         {/if}
         {#if front && front.members && front.members.length > 0}
-            <span class="title"><span>Fronters (<a href={`/f/${system.id}?l=pk`}>view</a>)</span></span>
+            <span class="title"><span>Fronters (<a href={`/f/${system.id}${linkParams.length > 0 ? `?${linkParams.join("&")}` : ""}`}>view</a>)</span></span>
             <span style="margin-bottom: 0.5rem;">
                 {#each front.members as member, index}
                 {member.name}{#if index !== front.members.length - 1},{" "}{/if}
@@ -43,7 +44,7 @@
             {/if}
             <div class="col">
                 <span class="title">Members</span>
-                <span>(See <a href={`/s/${system.id}/m?l=pk`} >this page</a>)</span>
+                <span>(See <a href={`/s/${system.id}/m${linkParams.length > 0 ? `?${linkParams.join("&")}` : ""}`} >this page</a>)</span>
             </div>
         </div>
         {#if system.description}

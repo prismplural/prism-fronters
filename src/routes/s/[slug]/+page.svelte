@@ -3,19 +3,26 @@
 
     import System from '$lib/components/cards/System.svelte';
     import { buildSystemEmbedTitle, buildSystemPageTitle, buildSystemEmbedDescription, getIcon, getColor } from '$lib/functions/strings/system';
-  import type { PageData } from './$types';
-  import PkSystem from '$lib/components/cards/PkSystem.svelte';
+    import type { PageData } from './$types';
+    import PkSystem from '$lib/components/cards/PkSystem.svelte';
+    import { shortenCard, shortenLayout } from '$lib/functions/utils';
 
     export let data: PageData;
 
     let url = "";
     onMount(() => url = window.location.href);
+
+    const params: string[] = []
+    const layout = shortenLayout(data.layout)
+    const card = shortenCard(data.card)
+    if (layout) params.push(layout)
+    if (card) params.push(card)
 </script>
 
 {#if data.layout === "default"}
-    <System system={data.system} front={data.front} />
+    <System system={data.system} front={data.front} linkParams={params} />
 {:else if data.layout === "pluralkit"}
-    <PkSystem system={data.system} front={data.front} />
+    <PkSystem system={data.system} front={data.front} linkParams={params} />
 {/if}
 
 <svelte:head>

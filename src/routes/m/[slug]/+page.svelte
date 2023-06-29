@@ -5,17 +5,21 @@
     import PkMember from '$lib/components/cards/PkMember.svelte';
     import { buildMemberPageTitle, buildMemberEmbedTitle, buildMemberEmbedDescription, getAvatar, getColor } from '$lib/functions/strings/member';
     import type { PageData } from './$types';
+    import { shortenCard, shortenLayout } from '$lib/functions/utils';
 
     export let data: PageData;
 
-    let url = "";
-    onMount(() => url = window.location.href);
+    const params: string[] = []
+    const layout = shortenLayout(data.layout)
+    const card = shortenCard(data.card)
+    if (layout) params.push(layout)
+    if (card) params.push(card)
 </script>
 
 {#if data.layout === "default"}
-    <Member member={data.member} />
+    <Member member={data.member} linkParams={params} />
 {:else}
-    <PkMember member={data.member} />
+    <PkMember member={data.member} linkParams={params} />
 {/if}
 
 <svelte:head>
@@ -23,7 +27,6 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content={buildMemberEmbedTitle(data.system, data.member)} />
     <meta property="og:description" content={buildMemberEmbedDescription(data.member)} />
-    <meta property="og:url" content={url} />
     <meta property="og:image" content={getAvatar(data.member)} />
     <meta name="theme-color" content={getColor(data.member, true)}>
 </svelte:head>

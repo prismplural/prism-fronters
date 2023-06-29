@@ -17,6 +17,13 @@
                     <option value="">Default</option>
                     <option value="pk">PluralKit embed</option>
                 </select>
+                <div class="row" style="margin-bottom: 0.5rem; margin-top: 0.5rem">
+                    <label for="m-layout">Cards used in member list:</label>
+                    <select id="m-layout" name="cards">
+                        <option value="">Small (default)</option>
+                        <option value="f">Full PluralKit embed</option>
+                    </select>
+                </div>
             </div>
         </form>
         <span>(<a href="/">Back to home</a>)</span>

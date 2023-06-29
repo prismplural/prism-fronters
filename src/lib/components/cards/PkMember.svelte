@@ -4,6 +4,7 @@
     import { getBirthday, getPronouns, getDescription, getColor, getBanner, getAvatar, getProxyTags, getCreated } from '$lib/functions/strings/member';
 
     export let member: Member;
+    export let linkParams: string[];
 </script>
 
 <div class="container pk" style={`border-left: 5px solid #${member.color}`}>
@@ -62,7 +63,7 @@
         <img class="banner" alt="Member banner" src={getBanner(member)} style="margin-bottom: 0.5rem;" />
     {/if}
     <div class="footer">
-        <span>System ID: <a href={`/s/${member.system}?l=pk`}>{member.system}</a> | Member ID: {member.id} 
+        <span>System ID: <a href={`/s/${member.system}${linkParams.length > 0 ? `?${linkParams.join("&")}` : ""}`}>{member.system}</a> | Member ID: {member.id} 
         {#if member.created}
             | Created on {getCreated(member, true)}
         {/if}

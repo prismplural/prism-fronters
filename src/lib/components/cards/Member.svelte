@@ -7,6 +7,7 @@
     import { getEmojis, getBirthday, getPronouns, getDescription, getColor, getBanner, getName } from '$lib/functions/strings/member';
 
     export let member: Member;
+    export let linkParams: string[];
 </script>
 
 <div class="container member">
@@ -34,7 +35,7 @@
         
         <div style="display: flex; flex-direction: column; gap: 1rem;">
             <button class="button" style="width: auto;" on:click={() => changeTheme(theme)}>Theme</button>
-            <span style="align-self: center;">(<a href={`/s/${member.system}`}>Back to system</a>)</span>
+            <span style="align-self: center;">(<a href={`/s/${member.system}${linkParams.length > 0 ? `?${linkParams.join("&")}` : ""}`}>Back to system</a>)</span>
         </div>
     </section>
     <div class="content">

@@ -8,13 +8,15 @@
     import { buildFrontEmbedTitle, buildFrontPageTitle, buildSwitchOutTitle } from '$lib/functions/strings/system';
     import { buildFrontEmbedDescription, getAvatar, getColor } from '$lib/functions/strings/member';
     import type { PageData } from './$types';
-    import { shortenLayout } from '$lib/functions/utils';
+    import { shortenCard, shortenLayout } from '$lib/functions/utils';
 
     export let data: PageData;
 
     const params: string[] = []
     const layout = shortenLayout(data.layout)
+    const card = shortenCard(data.card)
     if (layout) params.push(layout)
+    if (card) params.push(card)
 </script>
 
 <h2>{buildFrontPageTitle(data.system)}</h2>

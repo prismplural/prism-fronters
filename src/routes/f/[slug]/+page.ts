@@ -1,10 +1,11 @@
-import { selectLayout } from '$lib/functions/utils';
+import { selectCard, selectLayout } from '$lib/functions/utils';
 import { error } from '@sveltejs/kit';
 
 export async function load( {fetch, params, url} ) {
     const sid = params.slug.toLowerCase();
 
     const layout = selectLayout(url.searchParams);
+    const card = selectCard(url.searchParams)
     const includeSystem = url.searchParams.get("s") || url.searchParams.get("system") ? true : false
 
     let system: any;
@@ -41,6 +42,7 @@ export async function load( {fetch, params, url} ) {
         system: system,
         front: front,
         layout: layout,
-        includeSystem: includeSystem
+        includeSystem: includeSystem,
+        card: card,
     };
 }

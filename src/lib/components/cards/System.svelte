@@ -8,6 +8,7 @@
 
     export let system: System;
     export let front: Front;
+    export let linkParams: string[];
 </script>
 
 <div class="container member">
@@ -32,14 +33,14 @@
                         {/if}
                         {m.name}
                     {/each} 
-                    (<a href={`/f/${system.id}`}>view</a>)</span>
+                    (<a href={`/f/${system.id}${linkParams.length > 0 ? `?${linkParams.join("&")}` : ""}`}>view</a>)</span>
                 {/if}
             </div>
         </div>
         
         <div style="display: flex; flex-direction: column; gap: 1rem;">
             <button class="button" style="width: auto;" on:click={() => changeTheme(theme)}>Theme</button>
-            <span style="align-self: center;">(<a href={`/s/${system.id}/m`}>Member list</a>)</span>
+            <span style="align-self: center;">(<a href={`/s/${system.id}/m${linkParams.length > 0 ? `?${linkParams.join("&")}` : ""}`}>Member list</a>)</span>
         </div>
     </section>
     <div class="content">

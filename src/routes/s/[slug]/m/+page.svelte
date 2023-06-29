@@ -1,6 +1,4 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
-    import { page } from '$app/stores';
     import Lazy from 'svelte-lazy';
     import theme from "$lib/functions/store/theme";
 
@@ -9,7 +7,7 @@
     import MemberCard from '$lib/components/cards/Front.svelte';
     import { buildSystemListTitle, buildSystemListDescription, getIcon, getColor } from '$lib/functions/strings/system';
     import type { PageData } from './$types';
-  import { shortenLayout } from '$lib/functions/utils';
+  import { shortenCard, shortenLayout } from '$lib/functions/utils';
 
     export let data: PageData;
 
@@ -29,7 +27,9 @@
 
     const params: string[] = []
     const layout = shortenLayout(data.layout)
+    const card = shortenCard(data.card)
     if (layout) params.push(layout)
+    if (card) params.push(card)
 </script>
 
 <h2>{buildSystemListTitle(data.system)}</h2>
