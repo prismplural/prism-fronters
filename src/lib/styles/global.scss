@@ -479,6 +479,12 @@ a:hover {
     color: var(--button-hover);
 }
 
+code {
+    background-color: var(--background);
+    border-radius: 2px;
+    padding: 0.1rem 0.25rem;
+}
+
 // discord card stuff
 
 .embed-section blockquote {
