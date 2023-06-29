@@ -1,7 +1,10 @@
+import { selectLayout } from '$lib/functions/utils';
 import { error } from '@sveltejs/kit';
 
-export async function load( {fetch, params} ) {
+export async function load( {fetch, params, url} ) {
     const sid = params.slug.toLowerCase();
+
+    const layout = selectLayout(url.searchParams);
 
     let system: any;
     system = await fetch(`https://api.pluralkit.me/v2/systems/${sid}`, {
@@ -36,5 +39,6 @@ export async function load( {fetch, params} ) {
     return {
         system: system,
         front: front,
+        layout: layout,
     };
 }

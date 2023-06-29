@@ -11,7 +11,11 @@ export interface Member {
     pronouns?: string,
     created?: string,
     system: string,
-    webhook_avatar_url: string
+    webhook_avatar_url: string,
+    proxy_tags?: {
+        prefix: string,
+        suffix: string
+    }[],
 }
 
 export interface Front {

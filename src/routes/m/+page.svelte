@@ -12,6 +12,13 @@
                 <input required id="front-mid" name="mid" placeholder="member id...">
                 <button class="button">View</button>
             </div>
+            <div class="row" style="margin-bottom: 0.5rem; margin-top: 0.5rem">
+                <label for="m-layout">Layout used:</label>
+                <select id="m-layout" name="layout">
+                    <option value="">Default</option>
+                    <option value="pk">PluralKit embed</option>
+                </select>
+            </div>
         </form>
         <span>(<a href="/">Back to home</a>)</span>
     </section>

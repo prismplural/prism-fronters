@@ -40,14 +40,13 @@ export function getBirthday(member: Member) {
     return "";
 }
 
-// Parses a member's birthday
-export function getCreated(member: Member) {
+// Parses a member's creation date
+export function getCreated(member: Member, footer = false) {
     if (member.created) {
-        let str = moment(member.created, "YYYY-MM-DD").format("MMM D, YYYY");
+        if (footer) 
+            return moment(member.created).format("YYYY-MM-DD HH:mm:ss")
 
-        if (str.endsWith(', 0004')) str = str.replace(', 0004', "");
-    
-        return str;
+        return moment(member.created, "YYYY-MM-DD").format("MMM D, YYYY");
     }
     return "";
 }
@@ -79,6 +78,17 @@ export function getColor(member: Member, fallback = false) {
     if (member.color) return "#" + member.color;
     if (fallback === true) return "#ffffff";
     return "";
+}
+
+// Gets a member's proxy tags and formats them as seen on pluralkit's embeds
+export function getProxyTags(member: Member) {
+    let tags: string[] = []
+    if (member.proxy_tags && member.proxy_tags.length > 0) {
+        member.proxy_tags.forEach(tag => {
+            tags.push(`\`${tag.prefix ? tag.prefix : ""}text${tag.suffix ? tag.suffix : ""}\``)
+        })
+    }
+    return tags.join("\n")
 }
 
 // Builds the opengraph embed description for the current fronters page
