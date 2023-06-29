@@ -9,6 +9,8 @@
     import { buildFrontEmbedDescription, getAvatar, getColor } from '$lib/functions/strings/member';
     import type { PageData } from './$types';
     import { shortenCard, shortenLayout } from '$lib/functions/utils';
+  import PkSystem from '$lib/components/cards/PkSystem.svelte';
+  import PkMember from '$lib/components/cards/PkMember.svelte';
 
     export let data: PageData;
 
@@ -21,6 +23,20 @@
 
 <h2>{buildFrontPageTitle(data.system)}</h2>
 <span style="margin: 1rem auto 0 auto;">(<a href={`/s/${data.system.id}${params.length > 0 ? `?${params.join("&")}` : ""}`}>Back to system</a>)</span>
+{#if data.card === "full"}
+<div class="full container">
+    {#if data.includeSystem}
+        <PkSystem system={data.system} linkParams={params} />
+    {/if}
+    {#if data.front.members.length > 0}
+    {#each data.front.members as member}
+        <PkMember {member} linkParams={params}/>
+    {/each}
+    {:else}
+        <h3>{@html buildSwitchOutTitle(data.system)}</h3>
+    {/if}
+</div>
+{:else}
 <div class="front container">
     {#if data.includeSystem}
         <Front member={data.system} system={true} linkParams={params} />
@@ -33,9 +49,10 @@
         <h3>{@html buildSwitchOutTitle(data.system)}</h3>
     {/if}
 </div>
+{/if}
 {#if data.front.members.length > 0 || data.includeSystem}
 <span class="tinytext">(Click a card to view member info)</span>
-<button class="button" style="margin: 1rem auto 0 auto;" on:click={() => changeTheme(theme)}>Theme</button>
+<button class="button" style="margin: 1rem auto;" on:click={() => changeTheme(theme)}>Theme</button>
 {/if}
 
 <svelte:head>

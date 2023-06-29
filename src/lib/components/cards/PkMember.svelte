@@ -63,7 +63,10 @@
         <img class="banner" alt="Member banner" src={getBanner(member)} style="margin-bottom: 0.5rem;" />
     {/if}
     <div class="footer">
-        <span>System ID: <a href={`/s/${member.system}${linkParams.length > 0 ? `?${linkParams.join("&")}` : ""}`}>{member.system}</a> | Member ID: {member.id} 
+        <span>
+        {#if member.system}
+            System ID: <a href={`/s/${member.system}${linkParams.length > 0 ? `?${linkParams.join("&")}` : ""}`}>{member.system}</a> |
+        {/if} Member ID: <a href={`/m/${member.id}/${linkParams.length > 0 ? `?${linkParams.join("&")}` : ""}`}>{member.id}</a> 
         {#if member.created}
             | Created on {getCreated(member, true)}
         {/if}

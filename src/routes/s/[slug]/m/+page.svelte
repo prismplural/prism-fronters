@@ -8,6 +8,8 @@
     import { buildSystemListTitle, buildSystemListDescription, getIcon, getColor } from '$lib/functions/strings/system';
     import type { PageData } from './$types';
   import { shortenCard, shortenLayout } from '$lib/functions/utils';
+  import PkSystem from '$lib/components/cards/PkSystem.svelte';
+  import PkMember from '$lib/components/cards/PkMember.svelte';
 
     export let data: PageData;
 
@@ -38,26 +40,45 @@
 {#if data.members.length > 0}
 <Lazy>
     {#if getListFromLetter(data.members, "", true).length > 0 || data.includeSystem}
-    <h2>Unsorted.</h2>
-    <hr/>
-    <div class="front container">
-        {#if data.includeSystem}
-        <MemberCard member={data.system} system={true} linkParams={params}/>
+        <h2>Unsorted.</h2>
+        <hr/>
+        {#if data.card === "full"}
+        <div class="full container">
+            {#if data.includeSystem}
+                <PkSystem system={data.system} linkParams={params} />
+            {/if}
+            {#each getListFromLetter(data.members, "", true) as member}
+                    <PkMember {member} linkParams={params}/>
+            {/each}
+        </div>
+        {:else}
+            <div class="front container">
+                {#if data.includeSystem}
+                <MemberCard member={data.system} system={true} linkParams={params}/>
+                {/if}
+                {#each getListFromLetter(data.members, "", true) as member}
+                        <MemberCard {member} linkParams={params}/>
+                {/each}
+            </div>
         {/if}
-        {#each getListFromLetter(data.members, "", true) as member}
-                <MemberCard {member} linkParams={params}/>
-        {/each}
-    </div>
     {/if}
     {#each alphabet as letter}
     {#if getListFromLetter(data.members, letter).length > 0}
         <h2>{letter}.</h2>
         <hr/>
-        <div class="front container">
-        {#each getListFromLetter(data.members, letter) as member}
-            <MemberCard {member} linkParams={params}/>
-        {/each}
-    </div>
+        {#if data.card === "full"}
+            <div class="full container">
+                {#each getListFromLetter(data.members, letter) as member}
+                        <PkMember {member} linkParams={params}/>
+                {/each}
+            </div>
+        {:else}
+            <div class="front container">
+            {#each getListFromLetter(data.members, letter) as member}
+                <MemberCard {member} linkParams={params}/>
+            {/each}
+            </div>
+        {/if}
     {/if}
     {/each}
 </Lazy>
