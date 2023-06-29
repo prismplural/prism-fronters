@@ -6,6 +6,7 @@ export async function load( {fetch, params, url} ) {
     const sid = params.slug.toLowerCase();
 
     const layout = selectLayout(url.searchParams);
+    const includeSystem = url.searchParams.get("s") || url.searchParams.get("system") ? true : false
 
     let system: any;
     system = await fetch(`https://api.pluralkit.me/v2/systems/${sid}`, {
@@ -43,5 +44,6 @@ export async function load( {fetch, params, url} ) {
         system: system,
         members: members,
         layout: layout,
+        includeSystem: includeSystem,
     };
 }

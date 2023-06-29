@@ -13,15 +13,6 @@
 
     export let data: PageData;
 
-    let includeSystem = false;
-
-    let url = "";
-    onMount(() => url = window.location.href);
-
-    if ($page.url.searchParams.get('s') || $page.url.searchParams.get('system') || $page.url.searchParams.get('sys')) {
-        includeSystem = true;
-    }
-
     const alphabet = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", 'I', "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
     function getListFromLetter(list: Member[], letter: string, misc = false) {
@@ -46,11 +37,11 @@
 <button class="button" style="margin: 1rem auto 0 auto;" on:click={() => changeTheme(theme)}>Theme</button>
 {#if data.members.length > 0}
 <Lazy>
-    {#if getListFromLetter(data.members, "", true).length > 0 || includeSystem}
+    {#if getListFromLetter(data.members, "", true).length > 0 || data.includeSystem}
     <h2>Unsorted.</h2>
     <hr/>
     <div class="front container">
-        {#if includeSystem}
+        {#if data.includeSystem}
         <MemberCard member={data.system} system={true} linkParams={params}/>
         {/if}
         {#each getListFromLetter(data.members, "", true) as member}
@@ -79,7 +70,6 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content={buildSystemListTitle(data.system)} />
     <meta property="og:description" content={buildSystemListDescription(data.system)} />
-    <meta property="og:url" content={url} />
     <meta property="og:image" content={getIcon(data.system) ?? ""} />
     <meta name="theme-color" content={getColor(data.system, true) ?? ""}>
 </svelte:head>
