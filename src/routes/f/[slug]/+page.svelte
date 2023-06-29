@@ -3,12 +3,14 @@
     import { page } from '$app/stores';
     import theme from "$lib/functions/store/theme";
 
-    import changeTheme from '$lib/functions/misc';
+    import changeTheme from '$lib/functions/misc.js';
     import Front from '$lib/components/cards/Front.svelte';
     import { buildFrontEmbedTitle, buildFrontPageTitle, buildSwitchOutTitle } from '$lib/functions/strings/system';
     import { buildFrontEmbedDescription, getAvatar, getColor } from '$lib/functions/strings/member';
+    import type { PageData } from './$types';
+    import { shortenLayout } from '$lib/functions/utils';
 
-    export let data;
+    export let data: PageData;
 
     let includeSystem = false;
 
@@ -18,17 +20,19 @@
     if ($page.url.searchParams.get('s') || $page.url.searchParams.get('system') || $page.url.searchParams.get('sys')) {
         includeSystem = true;
     }
+    const params: string[] = []
+    if (data.layout) params.push(`l=${shortenLayout(data.layout)}`)
 </script>
 
 <h2>{buildFrontPageTitle(data.system)}</h2>
-<span style="margin: 1rem auto 0 auto;">(<a href={`/s/${data.system.id}`}>Back to system</a>)</span>
+<span style="margin: 1rem auto 0 auto;">(<a href={`/s/${data.system.id}${params.length > 0 ? `?${params.join("&")}` : ""}`}>Back to system</a>)</span>
 <div class="front container">
     {#if includeSystem}
-        <Front member={data.system} system={true}/>
+        <Front member={data.system} system={true} linkParams={params} />
     {/if}
     {#if data.front.members.length > 0}
     {#each data.front.members as member}
-        <Front {member}/>
+        <Front {member} linkParams={params}/>
     {/each}
     {:else}
         <h3>{@html buildSwitchOutTitle(data.system)}</h3>

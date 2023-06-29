@@ -8,8 +8,10 @@
     import type { Member } from '$lib/types';
     import MemberCard from '$lib/components/cards/Front.svelte';
     import { buildSystemListTitle, buildSystemListDescription, getIcon, getColor } from '$lib/functions/strings/system';
+    import type { PageData } from './$types';
+  import { shortenLayout } from '$lib/functions/utils';
 
-    export let data;
+    export let data: PageData;
 
     let includeSystem = false;
 
@@ -33,10 +35,13 @@
 
         return list.filter(m => m.name.toLowerCase().startsWith(letter.toLowerCase()));
     };
+
+    const params: string[] = []
+    if (data.layout) params.push(`l=${shortenLayout(data.layout)}`)
 </script>
 
 <h2>{buildSystemListTitle(data.system)}</h2>
-<span style="margin: 1rem auto 0 auto;">(<a href={`/s/${data.system.id}`}>Back to system</a>)</span>
+<span style="margin: 1rem auto 0 auto;">(<a href={`/s/${data.system.id}${params.length > 0 ? `?${params.join("&")}` : ""}`}>Back to system</a>)</span>
 <button class="button" style="margin: 1rem auto 0 auto;" on:click={() => changeTheme(theme)}>Theme</button>
 {#if data.members.length > 0}
 <Lazy>
@@ -45,10 +50,10 @@
     <hr/>
     <div class="front container">
         {#if includeSystem}
-        <MemberCard member={data.system} system={true}/>
+        <MemberCard member={data.system} system={true} linkParams={params}/>
         {/if}
         {#each getListFromLetter(data.members, "", true) as member}
-                <MemberCard {member}/>
+                <MemberCard {member} linkParams={params}/>
         {/each}
     </div>
     {/if}
@@ -58,7 +63,7 @@
         <hr/>
         <div class="front container">
         {#each getListFromLetter(data.members, letter) as member}
-            <MemberCard {member}/>
+            <MemberCard {member} linkParams={params}/>
         {/each}
     </div>
     {/if}

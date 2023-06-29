@@ -1,13 +1,13 @@
+const layouts = {
+    default: [
+        "default", "d"
+    ],
+    pluralkit: [
+        "pluralkit", "pk"
+    ]
+}
+
 export function selectLayout(params: URLSearchParams) {
-    const layouts = {
-        default: [
-            "default", "d", ""
-        ],
-        pluralkit: [
-            "pluralkit", "pk"
-        ]
-    }
-    
     let layout = "default";
     const l = params.get("layout") || params.get("l")
     if (l) {
@@ -18,4 +18,12 @@ export function selectLayout(params: URLSearchParams) {
     }
 
     return layout;
+}
+
+export function shortenLayout(layout: string) {
+    let short = ""
+    Object.entries(layouts).forEach(([key, value]) => {
+        if (layout === key) short = value[value.length - 1]
+    })
+    return short
 }

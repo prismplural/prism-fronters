@@ -5,7 +5,11 @@ export const actions = {
     default: async ({request}) => {
         const data = await request.formData();
         let sid = data.get('sid');
+        let layout = data.get("layout");
 
-        throw redirect(307, `./s/${sid.toLowerCase()}`);
+        let params: string[] = []
+        if (layout) params.push(`l=${layout}`)
+        
+        throw redirect(307, `./s/${(sid as string).toLowerCase()}${params.length > 0 ? "?" + params.join("&") : ""}`);
     }
   };
