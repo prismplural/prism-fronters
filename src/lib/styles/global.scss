@@ -376,6 +376,18 @@ input[type="checkbox"]:checked:after {
 }
 
 /* discord markdown stuff */
+.d-spoiler {
+    color: var(--background);
+    background-color: var(--background);
+    border-radius: 2px;
+    transition-delay: 6000s;
+}
+
+.d-spoiler:active {
+    color: var(--text);
+    transition-delay: 0s;
+}
+
 .emoji, .d-emoji {
    height: 1em;
    margin: 0 .05em 0 .1em;
