@@ -3,14 +3,20 @@
 
     import System from '$lib/components/cards/System.svelte';
     import { buildSystemEmbedTitle, buildSystemPageTitle, buildSystemEmbedDescription, getIcon, getColor } from '$lib/functions/strings/system';
+  import type { PageData } from './$types';
+  import PkSystem from '$lib/components/cards/PkSystem.svelte';
 
-    export let data;
+    export let data: PageData;
 
     let url = "";
     onMount(() => url = window.location.href);
 </script>
 
-<System system={data.system} front={data.front} />
+{#if data.layout === "default"}
+    <System system={data.system} front={data.front} />
+{:else if data.layout === "pluralkit"}
+    <PkSystem system={data.system} front={data.front} />
+{/if}
 
 <svelte:head>
     <title>{buildSystemPageTitle(data.system)}</title>

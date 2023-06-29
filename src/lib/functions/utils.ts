@@ -1,6 +1,6 @@
 const layouts = {
     default: [
-        "default", "d"
+        "default", "d", ""
     ],
     pluralkit: [
         "pluralkit", "pk"
@@ -25,5 +25,6 @@ export function shortenLayout(layout: string) {
     Object.entries(layouts).forEach(([key, value]) => {
         if (layout === key) short = value[value.length - 1]
     })
+    if (short) short = `l=${short}`
     return short
 }

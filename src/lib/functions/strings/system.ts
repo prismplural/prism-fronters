@@ -1,4 +1,5 @@
 import type { System } from '$lib/types'
+import moment from 'moment';
 
 // Builds the page title for the current fronters page
 export function buildFrontPageTitle(system: System) {
@@ -41,6 +42,17 @@ export function getName(system: System) {
 
 export function getIcon(system: System) {
     return system.avatar_url ? system.avatar_url : "";
+}
+
+// Parses a member's creation date
+export function getCreated(system: System, footer = false) {
+    if (system.created) {
+        if (footer) 
+            return moment(system.created).format("YYYY-MM-DD HH:mm:ss")
+
+        return moment(system.created, "YYYY-MM-DD").format("MMM D, YYYY");
+    }
+    return "";
 }
 
 // Returns the system's banner

@@ -21,7 +21,8 @@
         includeSystem = true;
     }
     const params: string[] = []
-    if (data.layout) params.push(`l=${shortenLayout(data.layout)}`)
+    const layout = shortenLayout(data.layout)
+    if (layout) params.push(layout)
 </script>
 
 <h2>{buildFrontPageTitle(data.system)}</h2>

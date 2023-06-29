@@ -1,8 +1,5 @@
 <script lang="ts">
     import type { Member } from '$lib/types';
-    import theme from '$lib/functions/store/theme';
-
-    import changeTheme from '$lib/functions/misc';
     import { convertToHTML } from '$lib/functions/strings/common';
     import { getBirthday, getPronouns, getDescription, getColor, getBanner, getAvatar, getProxyTags, getCreated } from '$lib/functions/strings/member';
 
