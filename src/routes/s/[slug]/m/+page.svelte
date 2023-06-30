@@ -1,5 +1,4 @@
 <script lang="ts">
-    import Lazy from 'svelte-lazy';
     import theme from "$lib/functions/store/theme";
 
     import changeTheme from '$lib/functions/misc';
@@ -38,7 +37,6 @@
 <span style="margin: 1rem auto 0 auto;">(<a href={`/s/${data.system.id}${params.length > 0 ? `?${params.join("&")}` : ""}`}>Back to system</a>)</span>
 <button class="button" style="margin: 1rem auto 0 auto;" on:click={() => changeTheme(theme)}>Theme</button>
 {#if data.members.length > 0}
-<Lazy>
     {#if getListFromLetter(data.members, "", true).length > 0 || data.includeSystem}
         <h2>Unsorted.</h2>
         <hr/>
@@ -81,7 +79,6 @@
         {/if}
     {/if}
     {/each}
-</Lazy>
 {:else}
     <h3>This system currently has no members.</h3>
 {/if}
