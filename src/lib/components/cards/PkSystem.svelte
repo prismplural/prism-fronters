@@ -63,7 +63,7 @@
         <img class="banner" alt="Member banner" src={getBanner(system)} style="margin-bottom: 0.5rem;" />
     {/if}
     <div class="footer">
-        <span>System ID: {system.id}
+        <span>System ID: <a href={`/s/${system.id}${linkParams.length > 0 ? `?${linkParams.join("&")}` : ""}`}>{system.id}</a>
         {#if system.created}
             | Created on {getCreated(system, true)}
         {/if}
