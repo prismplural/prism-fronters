@@ -20,8 +20,6 @@ export async function load( {params, fetch, url} ) {
 
     let groups: Group[] = [];
     if (url.searchParams.get("g")) {
-        console.log("Fetching groups!");
-
         groups = await fetch(`https://api.pluralkit.me/v2/members/${mid}/groups`, {
             headers: {
                 'origin': 'https://pk.fulmine.xyz'
