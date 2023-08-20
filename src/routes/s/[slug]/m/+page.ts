@@ -12,7 +12,7 @@ export async function load( {fetch, params, url} ) {
     let system: any;
     system = await fetch(`https://api.pluralkit.me/v2/systems/${sid}`, {
         headers: {
-            'origin': 'https://pk.fulmine.xyz'
+            'origin': 'https://pluralkit.xyz'
             }
     })
     .then(resp => {
@@ -26,7 +26,7 @@ export async function load( {fetch, params, url} ) {
     let members: Member[];
     members = await fetch(`https://api.pluralkit.me/v2/systems/${sid}/members`, {
         headers: {
-            'origin': 'https://pk.fulmine.xyz'
+            'origin': 'https://pluralkit.xyz'
             }
     })
     .then(resp => {

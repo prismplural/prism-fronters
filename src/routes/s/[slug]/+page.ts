@@ -10,7 +10,7 @@ export async function load( {params, fetch, url} ) {
     let system: any;
     system = await fetch(`https://api.pluralkit.me/v2/systems/${sid}`, {
         headers: {
-            'origin': 'https://pk.fulmine.xyz'
+            'origin': 'https://pluralkit.xyz'
             }
     })
     .then(resp => {
@@ -24,7 +24,7 @@ export async function load( {params, fetch, url} ) {
     let front: any;
     front = await fetch(`https://api.pluralkit.me/v2/systems/${sid}/fronters`, {
         headers: {
-            'origin': 'https://pk.fulmine.xyz'
+            'origin': 'https://pluralkit.xyz'
             }
     })
     .then(resp => {

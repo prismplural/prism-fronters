@@ -2,7 +2,7 @@
     let mid = "iyhda";
 
     let gotoUrl = `../m/${mid}/d`;
-    let visibleUrl = `https://pk.fulmine.xyz/m/${mid}/d`;
+    let visibleUrl = `https://pluralkit.xyz/m/${mid}/d`;
 
     // options time
     let theme = "dark";
@@ -54,7 +54,7 @@
         }
         
         gotoUrl = `../m/${mid}/d${querystring}`;
-        visibleUrl = `https://pk.fulmine.xyz/m/${mid}/d${querystring}`;
+        visibleUrl = `https://pluralkit.xyz/m/${mid}/d${querystring}`;
 
         params = [];
         querystring = "";
@@ -135,7 +135,7 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Fulmine | PluralKit" />
     <meta property="og:description" content="A small website that lets you view some PluralKit data." />
-    <meta property="og:url" content="https://pk.fulmine.xyz" />
+    <meta property="og:url" content="https://pluralkit.xyz" />
     <meta property="og:image" content="/favicon.png" />
     <meta name="theme-color" content="#ffffff">
 </svelte:head>

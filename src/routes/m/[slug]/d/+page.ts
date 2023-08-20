@@ -7,7 +7,7 @@ export async function load( {params, fetch, url} ) {
     let member: any;
     member = await fetch(`https://api.pluralkit.me/v2/members/${mid}`, {
         headers: {
-            'origin': 'https://pk.fulmine.xyz'
+            'origin': 'https://pluralkit.xyz'
             }
     })
     .then(resp => {
@@ -22,7 +22,7 @@ export async function load( {params, fetch, url} ) {
     if (url.searchParams.get("g")) {
         groups = await fetch(`https://api.pluralkit.me/v2/members/${mid}/groups`, {
             headers: {
-                'origin': 'https://pk.fulmine.xyz'
+                'origin': 'https://pluralkit.xyz'
                 }
         })
         .then(resp => {
