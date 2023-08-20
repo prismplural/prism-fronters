@@ -501,6 +501,16 @@ code {
     padding: 0.1rem 0.25rem;
 }
 
+pre {
+    white-space: pre-wrap;
+}
+
+pre code {
+    display: block;
+    overflow-x: auto;
+    padding: 1em;
+}
+
 // discord card stuff
 
 .embed-section blockquote {

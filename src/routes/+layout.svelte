@@ -4,6 +4,8 @@
 	import { setBodyTheme } from '$lib/functions/misc';
 	import { navigating } from '$app/stores';
 	import GlobalStyle from '$lib/styles/global.scss';
+	import GitHubDark from '$lib/styles/github-dark.scss'
+	import GitHubLight from '$lib/styles/github.scss'
 
 	// NProgress css
 	import 'nprogress/nprogress.css';

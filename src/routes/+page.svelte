@@ -7,6 +7,7 @@
     <h1>pluralkit.xyz</h1>
     <section class="content">
         <p>A small website that lets you view some PluralKit data.</p>
+        <p>Looking for the official PluralKit documentation? <a href="https://pluralkit.me">pluralkit.me</a> is the place to go!</p>
         <nav class="row">
             <a class="button" href="/s">System</a>
             <a class="button" href="/f">Front</a>
