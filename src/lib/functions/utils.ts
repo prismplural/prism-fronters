@@ -59,3 +59,7 @@ export function shortenCard(card: string) {
     if (short) short = `c=${short}`
     return short
 }
+
+export function addUrlParams(linkParams: string[]) {
+    return linkParams.length > 0 ? `?${linkParams.join("&")}` : ""
+}

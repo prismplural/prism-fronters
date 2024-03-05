@@ -5,6 +5,7 @@
     import changeTheme from '$lib/functions/misc';
     import { convertToHTML } from '$lib/functions/strings/common';
     import { getEmojis, getBirthday, getPronouns, getDescription, getColor, getBanner, getName } from '$lib/functions/strings/member';
+    import { addUrlParams } from '$lib/functions/utils';
 
     export let member: Member;
     export let linkParams: string[];
@@ -35,7 +36,7 @@
         
         <div style="display: flex; flex-direction: column; gap: 1rem;">
             <button class="button" style="width: auto;" on:click={() => changeTheme(theme)}>Theme</button>
-            <span style="align-self: center;">(<a href={`/s/${member.system}${linkParams.length > 0 ? `?${linkParams.join("&")}` : ""}`}>Back to system</a>)</span>
+            <span style="align-self: center;">(<a href={`/s/${member.system}${addUrlParams(linkParams)}`}>Back to system</a>)</span>
         </div>
     </section>
     <div class="content">

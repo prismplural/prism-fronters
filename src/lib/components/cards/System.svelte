@@ -5,6 +5,7 @@
     import changeTheme from '$lib/functions/misc';
     import { convertToHTML } from '$lib/functions/strings/common';
     import { getPronouns, getDescription, getColor, getBanner, getName, getIcon } from '$lib/functions/strings/system';
+    import { addUrlParams } from '$lib/functions/utils';
 
     export let system: System;
     export let front: Front;
@@ -33,14 +34,14 @@
                         {/if}
                         {m.name}
                     {/each} 
-                    (<a href={`/f/${system.id}${linkParams.length > 0 ? `?${linkParams.join("&")}` : ""}`}>view</a>)</span>
+                    (<a href={`/f/${system.id}${addUrlParams(linkParams)}`}>view</a>)</span>
                 {/if}
             </div>
         </div>
         
         <div style="display: flex; flex-direction: column; gap: 1rem;">
             <button class="button" style="width: auto;" on:click={() => changeTheme(theme)}>Theme</button>
-            <span style="align-self: center;">(<a href={`/s/${system.id}/m${linkParams.length > 0 ? `?${linkParams.join("&")}` : ""}`}>Member list</a>)</span>
+            <span style="align-self: center;">(<a href={`/s/${system.id}/m${addUrlParams(linkParams)}`}>Member list</a>)</span>
         </div>
     </section>
     <div class="content">

@@ -2,6 +2,7 @@
     import type { Member } from '$lib/types';
     import { convertToHTML } from '$lib/functions/strings/common';
     import { getBirthday, getPronouns, getDescription, getColor, getBanner, getAvatar, getProxyTags, getCreated } from '$lib/functions/strings/member';
+    import { addUrlParams } from '$lib/functions/utils';
 
     export let member: Member;
     export let linkParams: string[];
@@ -65,8 +66,8 @@
     <div class="footer">
         <span>
         {#if member.system}
-            System ID: <a href={`/s/${member.system}${linkParams.length > 0 ? `?${linkParams.join("&")}` : ""}`}>{member.system}</a> |
-        {/if} Member ID: <a href={`/m/${member.id}/${linkParams.length > 0 ? `?${linkParams.join("&")}` : ""}`}>{member.id}</a> 
+            System ID: <a href={`/s/${member.system}${addUrlParams(linkParams)}`}>{member.system}</a> |
+        {/if} Member ID: <a href={`/m/${member.id}${addUrlParams(linkParams)}`}>{member.id}</a> 
         {#if member.created}
             | Created on {getCreated(member, true)}
         {/if}

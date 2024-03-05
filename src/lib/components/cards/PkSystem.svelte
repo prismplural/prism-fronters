@@ -2,6 +2,7 @@
     import type { System } from '$lib/types';
     import { convertToHTML } from '$lib/functions/strings/common';
     import { getBanner, getIcon, getDescription, getCreated, getName, getPronouns } from '$lib/functions/strings/system';
+    import { addUrlParams } from '$lib/functions/utils';
 
     export let system: System;
     export let front: any = undefined;
@@ -44,7 +45,7 @@
             {/if}
             <div class="col">
                 <span class="title">Members</span>
-                <span>(See <a href={`/s/${system.id}/m${linkParams.length > 0 ? `?${linkParams.join("&")}` : ""}`} >this page</a>)</span>
+                <span>(See <a href={`/s/${system.id}/m${addUrlParams(linkParams)}`} >this page</a>)</span>
             </div>
         </div>
         {#if system.description}
@@ -63,7 +64,7 @@
         <img class="banner" alt="Member banner" src={getBanner(system)} style="margin-bottom: 0.5rem;" />
     {/if}
     <div class="footer">
-        <span>System ID: <a href={`/s/${system.id}${linkParams.length > 0 ? `?${linkParams.join("&")}` : ""}`}>{system.id}</a>
+        <span>System ID: <a href={`/s/${system.id}${addUrlParams(linkParams)}`}>{system.id}</a>
         {#if system.created}
             | Created on {getCreated(system, true)}
         {/if}
