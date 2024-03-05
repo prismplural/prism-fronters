@@ -1,7 +1,8 @@
 <script lang="ts">
     import type { Member } from "$lib/types";
-    import { convertToHTML } from '$lib/functions/strings/common'
     import { getPronouns, getAvatar, getColor } from '$lib/functions/strings/member'
+    import AwaitHtml from "../AwaitHtml.svelte"
+    import parseMarkdown from "$lib/functions/parseMarkdown"
     import { addUrlParams } from "$lib/functions/utils";
 
     export let member: Member;
@@ -17,9 +18,9 @@
         <img class="avatar" style="width: 100%; aspect-ratio: 1 / 1;" src={getAvatar(member)} alt={`${name}'s avatar`}>
         {/if}
         <div class="desc">
-            <h3 class="name">{@html convertToHTML(name)}</h3>
+            <h3 class="name"><AwaitHtml htmlPromise={new Promise((res) => res(name))} useTwemoji={true} /></h3>
             {#if getPronouns(member)}
-            <span class="pronouns">{@html convertToHTML(getPronouns(member))}</span>
+            <span class="pronouns"><AwaitHtml htmlPromise={parseMarkdown(getPronouns(member), { embed: true })} useTwemoji={true} /></span>
             {/if}
         </div>
     </div>

@@ -3,9 +3,10 @@
     import theme from '$lib/functions/store/theme';
 
     import changeTheme from '$lib/functions/misc';
-    import { convertToHTML } from '$lib/functions/strings/common';
     import { getPronouns, getDescription, getColor, getBanner, getName, getIcon } from '$lib/functions/strings/system';
     import { addUrlParams } from '$lib/functions/utils';
+    import AwaitHtml from '../AwaitHtml.svelte'
+    import parseMarkdown from '$lib/functions/parseMarkdown'
 
     export let system: System;
     export let front: Front;
@@ -24,7 +25,7 @@
                 <hr/>
                 {/if}
                 {#if getPronouns(system)}
-                    <span><b>Pronouns:</b> {@html convertToHTML(getPronouns(system))}</span>
+                    <span><b>Pronouns:</b><AwaitHtml htmlPromise={parseMarkdown(getPronouns(system))} useTwemoji={true} /></span>
                 {/if}
                 {#if front.members && front.members.length > 0}
                     <span><b>Fronting:</b>
@@ -48,7 +49,7 @@
     {#if getDescription(system)}
     <main class="desc" style={getBanner(system) && getColor(system) ? `border-left: 4px solid ${getColor(system)}` : ""}>
             <div>
-                {@html convertToHTML(getDescription(system))} 
+                <AwaitHtml htmlPromise={parseMarkdown(getDescription(system), { embed: true })} useTwemoji={true} />
             </div>
     </main>
     {/if}

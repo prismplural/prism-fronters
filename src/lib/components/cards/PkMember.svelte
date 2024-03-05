@@ -3,6 +3,8 @@
     import { convertToHTML } from '$lib/functions/strings/common';
     import { getBirthday, getPronouns, getDescription, getColor, getBanner, getAvatar, getProxyTags, getCreated } from '$lib/functions/strings/member';
     import { addUrlParams } from '$lib/functions/utils';
+    import AwaitHtml from '../AwaitHtml.svelte';
+  import parseMarkdown from '$lib/functions/parseMarkdown'
 
     export let member: Member;
     export let linkParams: string[];
@@ -20,7 +22,7 @@
             {#if member.display_name}
                 <div class="col">
                     <span class="title">Display Name</span>
-                    <span>{@html convertToHTML(member.display_name)}</span>
+                    <span><AwaitHtml htmlPromise={new Promise((res) => res(member.display_name || ""))} useTwemoji={true} /></span>
                 </div>
             {/if}
             {#if member.birthday}
@@ -32,13 +34,13 @@
             {#if member.pronouns}
                 <div class="col">
                     <span class="title">Pronouns</span>
-                    <span>{@html convertToHTML(getPronouns(member))}</span>
+                    <span><AwaitHtml htmlPromise={parseMarkdown(getPronouns(member), { embed: true })} useTwemoji={true} /></span>
                 </div>
             {/if}
             {#if member.proxy_tags && member.proxy_tags.length > 0}
                 <div class="col">
                     <span class="title">Proxy Tags</span>
-                    <span>{@html convertToHTML(getProxyTags(member))}</span>
+                    <span><AwaitHtml htmlPromise={parseMarkdown(getProxyTags(member))} useTwemoji={true} /></span>
                 </div>
             {/if}
             {#if member.color}
@@ -51,7 +53,7 @@
         {#if member.description}
             <span class="title">Description</span>
             <div class="description" style="margin-bottom: 0.5rem;">
-                {@html convertToHTML(getDescription(member))}
+                <AwaitHtml htmlPromise={parseMarkdown(getDescription(member), { embed: true })} useTwemoji={true} />
             </div>
         {/if}
     </div>

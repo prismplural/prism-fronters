@@ -1,4 +1,4 @@
-import twemoji from 'twemoji';
+import twemoji from '@twemoji/api';
 import toHtml from 'discord-markdown';
 
 const { toHTML } = toHtml;

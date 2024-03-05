@@ -3,9 +3,10 @@
     import theme from '$lib/functions/store/theme';
 
     import changeTheme from '$lib/functions/misc';
-    import { convertToHTML } from '$lib/functions/strings/common';
     import { getEmojis, getBirthday, getPronouns, getDescription, getColor, getBanner, getName } from '$lib/functions/strings/member';
     import { addUrlParams } from '$lib/functions/utils';
+  import AwaitHtml from '../AwaitHtml.svelte'
+  import parseMarkdown from '$lib/functions/parseMarkdown'
 
     export let member: Member;
     export let linkParams: string[];
@@ -23,13 +24,13 @@
                 <hr/>
                 {/if}
                 {#if getEmojis(member)}
-                <span><b>Emojis:</b> {@html convertToHTML(getEmojis(member))}</span>
+                <span><b>Emojis:</b> <AwaitHtml htmlPromise={new Promise((res) => res(getEmojis(member)))} useTwemoji={true} /></span>
                 {/if}
                 {#if getBirthday(member)}
-                <span><b>Birthday:</b> {convertToHTML(getBirthday(member))}</span>
+                <span><b>Birthday:</b> <AwaitHtml htmlPromise={new Promise((res) => res(getBirthday(member)))} useTwemoji={true} /></span>
                 {/if}
                 {#if getPronouns(member)}
-                    <span><b>Pronouns:</b> {@html convertToHTML(getPronouns(member))}</span>
+                    <span><b>Pronouns:</b> <AwaitHtml htmlPromise={parseMarkdown(getPronouns(member))} useTwemoji={true} /></span>
                 {/if}
             </div>
         </div>
@@ -43,7 +44,7 @@
     {#if getDescription(member)}
     <main class="desc" style={getBanner(member) && getColor(member) ? `border-left: 4px solid ${getColor(member)}` : ""}>
             <div>
-                {@html convertToHTML(getDescription(member))} 
+                <AwaitHtml htmlPromise={parseMarkdown(getDescription(member), { embed: true })} useTwemoji={true} />
             </div>
     </main>
     {/if}

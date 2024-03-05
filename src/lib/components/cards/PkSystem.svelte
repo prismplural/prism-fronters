@@ -1,8 +1,9 @@
 <script lang="ts">
     import type { System } from '$lib/types';
-    import { convertToHTML } from '$lib/functions/strings/common';
     import { getBanner, getIcon, getDescription, getCreated, getName, getPronouns } from '$lib/functions/strings/system';
     import { addUrlParams } from '$lib/functions/utils';
+    import AwaitHtml from '../AwaitHtml.svelte'
+    import parseMarkdown from '$lib/functions/parseMarkdown'
 
     export let system: System;
     export let front: any = undefined;
@@ -13,11 +14,11 @@
     <div class="info">
         {#if system.name}
         <span class="title" style="margin-bottom: 0.5rem;">
-            {@html convertToHTML(getName(system))}
+            <AwaitHtml htmlPromise={new Promise((res) => res(getName(system)))} useTwemoji={true} />
         </span>
         {/if}
         {#if front && front.members && front.members.length > 0}
-            <span class="title"><span>Fronters (<a href={`/f/${system.id}${linkParams.length > 0 ? `?${linkParams.join("&")}` : ""}`}>view</a>)</span></span>
+            <span class="title"><span>Fronters (<a href={`/f/${system.id}${addUrlParams(linkParams)}`}>view</a>)</span></span>
             <span style="margin-bottom: 0.5rem;">
                 {#each front.members as member, index}
                 {member.name}{#if index !== front.members.length - 1},{" "}{/if}
@@ -28,13 +29,13 @@
             {#if system.tag}
                 <div class="col">
                     <span class="title">Tag</span>
-                    <span>{@html convertToHTML(system.tag)}</span>
+                    <span><AwaitHtml htmlPromise={parseMarkdown(system.tag)} useTwemoji={true} /></span>
                 </div>
             {/if}
             {#if system.pronouns}
                 <div class="col">
                     <span class="title">Pronouns</span>
-                    <span>{@html convertToHTML(getPronouns(system))}</span>
+                    <span><AwaitHtml htmlPromise={parseMarkdown(getPronouns(system), { embed: true })} useTwemoji={true} /></span>
                 </div>
             {/if}
             {#if system.color}
@@ -51,7 +52,7 @@
         {#if system.description}
             <span class="title">Description</span>
             <div class="description" style="margin-bottom: 0.5rem;">
-                {@html convertToHTML(getDescription(system))}
+                <AwaitHtml htmlPromise={parseMarkdown(getDescription(system), { embed: true })} useTwemoji={true} />
             </div>
         {/if}
     </div>

@@ -2,12 +2,12 @@
     import type Card from '$lib/cardtypes';
 	import { Theme } from '$lib/cardtypes';
 
-    import toHtml from 'discord-markdown';
-	import twemoji from 'twemoji';
+    import parseMarkdown from '$lib/functions/parseMarkdown';
+    import AwaitHtml from '../AwaitHtml.svelte';
+	import twemoji from '@twemoji/api';
 
     export let card: Card;
-    
-    const { toHTML } = toHtml;
+
 
     const themeColors: { [key: string]: Record<string, string> } = {
         dark: {
@@ -101,7 +101,7 @@
                         {:else}
                             <img class="emoji" draggable="false" src={card.info.emoji_url} alt="status emoji">
                         {/if}
-                        {@html toHTML(card.info.status, { embed: true })}
+                        <AwaitHtml htmlPromise={parseMarkdown(card.info.status)} useTwemoji={true} />
                     </span>
                 {:else if card.info.emoji || card.info.emoji_url}
                     <div class="embed-emoji-status">
@@ -117,7 +117,7 @@
                 <div class="embed-section">
                     <h2 class="embed-section-title">About me</h2>
                     <div class="embed-about">
-                        {@html twemoji.parse(toHTML(card.info.about, { embed: true}))}
+                        <AwaitHtml htmlPromise={parseMarkdown(card.info.about, { embed: true})} useTwemoji={true} />
                     </div>
                 </div>
             {/if}
@@ -150,7 +150,7 @@
                     {#each card.roles as role}
                         <div class={`embed-role ${card.colors.primary ? "embed-role-outline" : "embed-role-full"} ${role.full ? "embed-role-width" : ""}`}>
                             <div class="embed-role-button" style={role.color ? `background-color: ${role.color};` : "box-shadow:  inset 0 0 0 1px var(--divider-color);" }></div>
-                            <span class="embed-role-name">{@html twemoji.parse(toHTML(role.name, { embed: true}))}</span>
+                            <span class="embed-role-name"><AwaitHtml htmlPromise={parseMarkdown(role.name)} useTwemoji={true} /></span>
                         </div>
                     {/each}
                 </div>
@@ -160,7 +160,7 @@
                 <div class="embed-section">
                     <h2 class="embed-section-title">Note</h2>
                     <div class="embed-about embed-note">
-                        {@html twemoji.parse(toHTML(card.info.notes, { embed: true }))}
+                        <AwaitHtml htmlPromise={parseMarkdown(card.info.notes, { embed: true })} useTwemoji={true} />
                     </div>
                 </div>
             {/if}
