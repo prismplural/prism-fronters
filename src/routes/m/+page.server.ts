@@ -9,7 +9,7 @@ export const actions = {
 
     const params = getParams(data)
 
-    throw redirect(
+    redirect(
       307,
       `./m/${(mid as string).toLowerCase()}${params.length > 0 ? "?" + params.join("&") : ""}`
     )
