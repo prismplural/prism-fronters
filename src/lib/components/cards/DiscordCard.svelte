@@ -101,7 +101,7 @@
                         {:else}
                             <img class="emoji" draggable="false" src={card.info.emoji_url} alt="status emoji">
                         {/if}
-                        <AwaitHtml htmlPromise={parseMarkdown(card.info.status)} useTwemoji={true} />
+                        <AwaitHtml htmlPromise={parseMarkdown(card.info.status, { embed: true })} useTwemoji={true} />
                     </span>
                 {:else if card.info.emoji || card.info.emoji_url}
                     <div class="embed-emoji-status">

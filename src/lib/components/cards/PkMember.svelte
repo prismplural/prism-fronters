@@ -38,7 +38,7 @@
             {#if member.proxy_tags && member.proxy_tags.length > 0}
                 <div class="col">
                     <span class="title">Proxy Tags</span>
-                    <span><AwaitHtml htmlPromise={parseMarkdown(getProxyTags(member))} useTwemoji={true} /></span>
+                    <span><AwaitHtml htmlPromise={parseMarkdown(getProxyTags(member), { embed: true })} useTwemoji={true} /></span>
                 </div>
             {/if}
             {#if member.color}

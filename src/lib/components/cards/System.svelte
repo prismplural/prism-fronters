@@ -24,7 +24,7 @@
                 <hr/>
                 {/if}
                 {#if getPronouns(system)}
-                    <span><b>Pronouns:</b><AwaitHtml htmlPromise={parseMarkdown(getPronouns(system))} useTwemoji={true} /></span>
+                    <span><b>Pronouns:</b><AwaitHtml htmlPromise={parseMarkdown(getPronouns(system), { embed: true })} useTwemoji={true} /></span>
                 {/if}
                 {#if front.members && front.members.length > 0}
                     <span><b>Fronting:</b>

@@ -28,7 +28,7 @@
             {#if system.tag}
                 <div class="col">
                     <span class="title">Tag</span>
-                    <span><AwaitHtml htmlPromise={parseMarkdown(system.tag)} useTwemoji={true} /></span>
+                    <span><AwaitHtml htmlPromise={parseMarkdown(system.tag, { embed: true })} useTwemoji={true} /></span>
                 </div>
             {/if}
             {#if system.pronouns}

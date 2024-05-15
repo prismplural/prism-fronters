@@ -31,7 +31,7 @@
                 <span><b>Birthday:</b> <AwaitHtml htmlPromise={new Promise((res) => res(getBirthday(member)))} useTwemoji={true} /></span>
                 {/if}
                 {#if getPronouns(member)}
-                    <span><b>Pronouns:</b> <AwaitHtml htmlPromise={parseMarkdown(getPronouns(member))} useTwemoji={true} /></span>
+                    <span><b>Pronouns:</b> <AwaitHtml htmlPromise={parseMarkdown(getPronouns(member), { embed: true })} useTwemoji={true} /></span>
                 {/if}
             </div>
         </div>
