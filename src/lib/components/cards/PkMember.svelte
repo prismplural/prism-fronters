@@ -1,13 +1,11 @@
 <script lang="ts">
     import type { Member } from '$lib/types';
-    import { convertToHTML } from '$lib/functions/strings/common';
     import { getBirthday, getPronouns, getDescription, getColor, getBanner, getAvatar, getProxyTags, getCreated } from '$lib/functions/strings/member';
-    import { addUrlParams } from '$lib/functions/utils';
     import AwaitHtml from '../AwaitHtml.svelte';
   import parseMarkdown from '$lib/functions/parseMarkdown'
+  import { page } from '$app/stores'
 
     export let member: Member;
-    export let linkParams: string[];
 </script>
 
 <div class="container pk" style={`border-left: 5px solid #${member.color}`}>
@@ -68,8 +66,8 @@
     <div class="footer">
         <span>
         {#if member.system}
-            System ID: <a href={`/s/${member.system}${addUrlParams(linkParams)}`}>{member.system}</a> |
-        {/if} Member ID: <a href={`/m/${member.id}${addUrlParams(linkParams)}`}>{member.id}</a> 
+            System ID: <a href={`/s/${member.system}?${$page.url.searchParams.toString()}`}>{member.system}</a> |
+        {/if} Member ID: <a href={`/m/${member.id}?${$page.url.searchParams.toString()}`}>{member.id}</a> 
         {#if member.created}
             | Created on {getCreated(member, true)}
         {/if}

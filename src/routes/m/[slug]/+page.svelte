@@ -1,6 +1,4 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
-
     import Member from '$lib/components/cards/Member.svelte';
     import PkMember from '$lib/components/cards/PkMember.svelte';
     import { buildMemberPageTitle, buildMemberEmbedTitle, buildMemberEmbedDescription, getAvatar, getColor } from '$lib/functions/strings/member';
@@ -17,9 +15,9 @@
 </script>
 
 {#if data.layout === "default"}
-    <Member member={data.member} linkParams={params} />
+    <Member member={data.member}/>
 {:else}
-    <PkMember member={data.member} linkParams={params} />
+    <PkMember member={data.member} />
 {/if}
 
 <svelte:head>

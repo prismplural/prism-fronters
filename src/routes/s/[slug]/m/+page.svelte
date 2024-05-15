@@ -9,6 +9,7 @@
   import { shortenCard, shortenLayout } from '$lib/functions/utils';
   import PkSystem from '$lib/components/cards/PkSystem.svelte';
   import PkMember from '$lib/components/cards/PkMember.svelte';
+  import { page } from "$app/stores"
 
     export let data: PageData;
 
@@ -34,7 +35,7 @@
 </script>
 
 <h2>{buildSystemListTitle(data.system)}</h2>
-<span style="margin: 1rem auto 0 auto;">(<a href={`/s/${data.system.id}${params.length > 0 ? `?${params.join("&")}` : ""}`}>Back to system</a>)</span>
+<span style="margin: 1rem auto 0 auto;">(<a href={`/s/${data.system.id}?${$page.url.searchParams.toString()}`}>Back to system</a>)</span>
 <button class="button" style="margin: 1rem auto 0 auto;" on:click={() => changeTheme(theme)}>Theme</button>
 {#if data.members.length > 0}
     {#if getListFromLetter(data.members, "", true).length > 0 || data.includeSystem}
@@ -43,19 +44,19 @@
         {#if data.card === "full"}
         <div class="full container">
             {#if data.includeSystem}
-                <PkSystem system={data.system} linkParams={params} />
+                <PkSystem system={data.system}  />
             {/if}
             {#each getListFromLetter(data.members, "", true) as member}
-                    <PkMember {member} linkParams={params}/>
+                    <PkMember {member} />
             {/each}
         </div>
         {:else}
             <div class="front container">
                 {#if data.includeSystem}
-                <MemberCard member={data.system} system={true} linkParams={params}/>
+                <MemberCard member={data.system} system={true} />
                 {/if}
                 {#each getListFromLetter(data.members, "", true) as member}
-                        <MemberCard {member} linkParams={params}/>
+                        <MemberCard {member} />
                 {/each}
             </div>
         {/if}
@@ -67,13 +68,13 @@
         {#if data.card === "full"}
             <div class="full container">
                 {#each getListFromLetter(data.members, letter) as member}
-                        <PkMember {member} linkParams={params}/>
+                        <PkMember {member} />
                 {/each}
             </div>
         {:else}
             <div class="front container">
             {#each getListFromLetter(data.members, letter) as member}
-                <MemberCard {member} linkParams={params}/>
+                <MemberCard {member} />
             {/each}
             </div>
         {/if}

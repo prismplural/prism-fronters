@@ -22,15 +22,15 @@
 </script>
 
 <h2>{buildFrontPageTitle(data.system)}</h2>
-<span style="margin: 1rem auto 0 auto;">(<a href={`/s/${data.system.id}${params.length > 0 ? `?${params.join("&")}` : ""}`}>Back to system</a>)</span>
+<span style="margin: 1rem auto 0 auto;">(<a href={`/s/${data.system.id}?${$page.url.searchParams.toString()}`}>Back to system</a>)</span>
 {#if data.card === "full"}
 <div class="full container">
     {#if data.includeSystem}
-        <PkSystem system={data.system} linkParams={params} />
+        <PkSystem system={data.system}  />
     {/if}
     {#if data.front.members.length > 0}
     {#each data.front.members as member}
-        <PkMember {member} linkParams={params}/>
+        <PkMember {member} />
     {/each}
     {:else}
         <h3>{@html buildSwitchOutTitle(data.system)}</h3>
@@ -39,11 +39,11 @@
 {:else}
 <div class="front container">
     {#if data.includeSystem}
-        <Front member={data.system} system={true} linkParams={params} />
+        <Front member={data.system} system={true}  />
     {/if}
     {#if data.front.members.length > 0}
     {#each data.front.members as member}
-        <Front {member} linkParams={params}/>
+        <Front {member} />
     {/each}
     {:else}
         <h3>{@html buildSwitchOutTitle(data.system)}</h3>

@@ -20,9 +20,9 @@
 </script>
 
 {#if data.layout === "default"}
-    <System system={data.system} front={data.front} linkParams={params} />
+    <System system={data.system} front={data.front}  />
 {:else if data.layout === "pluralkit"}
-    <PkSystem system={data.system} front={data.front} linkParams={params} />
+    <PkSystem system={data.system} front={data.front}  />
 {/if}
 
 <svelte:head>

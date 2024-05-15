@@ -4,13 +4,12 @@
 
     import changeTheme from '$lib/functions/misc';
     import { getPronouns, getDescription, getColor, getBanner, getName, getIcon } from '$lib/functions/strings/system';
-    import { addUrlParams } from '$lib/functions/utils';
     import AwaitHtml from '../AwaitHtml.svelte'
     import parseMarkdown from '$lib/functions/parseMarkdown'
+  import { page } from '$app/stores'
 
     export let system: System;
     export let front: Front;
-    export let linkParams: string[];
 </script>
 
 <div class="container member">
@@ -35,14 +34,14 @@
                         {/if}
                         {m.name}
                     {/each} 
-                    (<a href={`/f/${system.id}${addUrlParams(linkParams)}`}>view</a>)</span>
+                    (<a href={`/f/${system.id}?${$page.url.searchParams.toString()}`}>view</a>)</span>
                 {/if}
             </div>
         </div>
         
         <div style="display: flex; flex-direction: column; gap: 1rem;">
             <button class="button" style="width: auto;" on:click={() => changeTheme(theme)}>Theme</button>
-            <span style="align-self: center;">(<a href={`/s/${system.id}/m${addUrlParams(linkParams)}`}>Member list</a>)</span>
+            <span style="align-self: center;">(<a href={`/s/${system.id}/m?${$page.url.searchParams.toString()}`}>Member list</a>)</span>
         </div>
     </section>
     <div class="content">

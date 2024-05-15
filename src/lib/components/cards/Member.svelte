@@ -3,20 +3,21 @@
     import theme from '$lib/functions/store/theme';
 
     import changeTheme from '$lib/functions/misc';
-    import { getEmojis, getBirthday, getPronouns, getDescription, getColor, getBanner, getName } from '$lib/functions/strings/member';
-    import { addUrlParams } from '$lib/functions/utils';
+    import { getEmojis, getBirthday, getPronouns, getDescription, getColor, getBanner, getName, getAvatar } from '$lib/functions/strings/member';
   import AwaitHtml from '../AwaitHtml.svelte'
   import parseMarkdown from '$lib/functions/parseMarkdown'
+  import { page } from '$app/stores'
 
     export let member: Member;
-    export let linkParams: string[];
+
+    const useProxyAvatar = $page.url.searchParams.get("pc") ? true : false
 </script>
 
 <div class="container member">
     <section class="side">
         <div class="top">
-            {#if member.avatar_url}
-            <img class="avatar" src={member.avatar_url} alt={`${member.name}'s avatar`}>
+            {#if getAvatar(member, useProxyAvatar)}
+            <img class="avatar" src={getAvatar(member, useProxyAvatar)} alt={`${member.name}'s avatar`}>
             {/if}
             <div class="info">
                 {#if getName(member)}
@@ -37,7 +38,7 @@
         
         <div style="display: flex; flex-direction: column; gap: 1rem;">
             <button class="button" style="width: auto;" on:click={() => changeTheme(theme)}>Theme</button>
-            <span style="align-self: center;">(<a href={`/s/${member.system}${addUrlParams(linkParams)}`}>Back to system</a>)</span>
+            <span style="align-self: center;">(<a href={`/s/${member.system}?${$page.url.searchParams.toString()}`}>Back to system</a>)</span>
         </div>
     </section>
     <div class="content">

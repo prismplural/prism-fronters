@@ -1,5 +1,6 @@
 <script lang="ts">
     import { enhance } from '$app/forms';
+  import DisplayOptions from '$lib/components/DisplayOptions.svelte'
 </script>
 
 <main class="container info">
@@ -11,20 +12,7 @@
                 <input required id="front-sid" name="sid" placeholder="system id...">
                 <button class="button">View</button>
             </div>
-            <div class="row" style="margin-bottom: 0.5rem; margin-top: 0.5rem">
-                <label for="s-layout">Layout used:</label>
-                <select id="s-layout" name="layout">
-                    <option value="">Default</option>
-                    <option value="pk">PluralKit embed</option>
-                </select>
-            </div>
-            <div class="row" style="margin-bottom: 0.5rem; margin-top: 0.5rem">
-                <label for="m-layout">Cards used in lists:</label>
-                <select id="m-layout" name="cards">
-                    <option value="">Small (default)</option>
-                    <option value="f">Full PluralKit embed</option>
-                </select>
-            </div>
+            <DisplayOptions />
         </form>
         <span>(<a href="/">Back to home</a>)</span>
     </section>

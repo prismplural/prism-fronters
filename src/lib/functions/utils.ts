@@ -1,3 +1,25 @@
+export function getParams(data: FormData) {
+    let layout = data.get("layout-card");
+    let showSystem = data.get("system");
+    let cards = data.get("layout-list");
+    let proxyList = data.get("proxy-avatar-list")
+    let proxyCard = data.get("proxy-avatar-card")
+    let pronouns = data.get("pronouns")
+    let displayName = data.get("displayname")
+
+    let params: string[] = []
+    if (layout) params.push(`l=${layout}`)
+    if (showSystem) params.push(`s=y`)
+    if (cards) params.push("c=f")
+    if (proxyList) params.push("pl=y")
+    if (proxyCard) params.push("pc=y")
+    if (pronouns) params.push("prns=n")
+    if (displayName) params.push("dn=y")
+
+    return params
+}
+
+
 const layouts = {
     default: [
         "default", "d", ""
@@ -58,8 +80,4 @@ export function shortenCard(card: string) {
     })
     if (short) short = `c=${short}`
     return short
-}
-
-export function addUrlParams(linkParams: string[]) {
-    return linkParams.length > 0 ? `?${linkParams.join("&")}` : ""
 }

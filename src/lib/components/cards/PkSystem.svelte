@@ -1,13 +1,12 @@
 <script lang="ts">
     import type { System } from '$lib/types';
     import { getBanner, getIcon, getDescription, getCreated, getName, getPronouns } from '$lib/functions/strings/system';
-    import { addUrlParams } from '$lib/functions/utils';
     import AwaitHtml from '../AwaitHtml.svelte'
     import parseMarkdown from '$lib/functions/parseMarkdown'
+  import { page } from '$app/stores'
 
     export let system: System;
     export let front: any = undefined;
-    export let linkParams: string[];
 </script>
 
 <div class="container pk" style={`border-left: 5px solid #${system.color}`}>
@@ -18,7 +17,7 @@
         </span>
         {/if}
         {#if front && front.members && front.members.length > 0}
-            <span class="title"><span>Fronters (<a href={`/f/${system.id}${addUrlParams(linkParams)}`}>view</a>)</span></span>
+            <span class="title"><span>Fronters (<a href={`/f/${system.id}?${$page.url.searchParams.toString()}`}>view</a>)</span></span>
             <span style="margin-bottom: 0.5rem;">
                 {#each front.members as member, index}
                 {member.name}{#if index !== front.members.length - 1},{" "}{/if}
@@ -46,7 +45,7 @@
             {/if}
             <div class="col">
                 <span class="title">Members</span>
-                <span>(See <a href={`/s/${system.id}/m${addUrlParams(linkParams)}`} >this page</a>)</span>
+                <span>(See <a href={`/s/${system.id}/m?${$page.url.searchParams.toString()}`} >this page</a>)</span>
             </div>
         </div>
         {#if system.description}
@@ -65,7 +64,7 @@
         <img class="banner" alt="Member banner" src={getBanner(system)} style="margin-bottom: 0.5rem;" />
     {/if}
     <div class="footer">
-        <span>System ID: <a href={`/s/${system.id}${addUrlParams(linkParams)}`}>{system.id}</a>
+        <span>System ID: <a href={`/s/${system.id}?${$page.url.searchParams.toString()}`}>{system.id}</a>
         {#if system.created}
             | Created on {getCreated(system, true)}
         {/if}
