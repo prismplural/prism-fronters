@@ -139,6 +139,7 @@
   <meta property="og:description" content={buildSystemListDescription(data.system)} />
   <meta property="og:image" content={getIcon(data.system) ?? ""} />
   <meta name="theme-color" content={getColor(data.system, true) ?? ""} />
+  <meta name="robots" content="noindex">
 </svelte:head>
 
 <style>
