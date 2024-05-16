@@ -1,6 +1,6 @@
 {
-  "name": "fulmine-front",
-  "version": "0.0.1",
+  "name": "pluralkit.xyz",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "vite dev",
