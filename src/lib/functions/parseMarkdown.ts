@@ -1,6 +1,7 @@
 import { toHTML } from "discord-markdown"
 import hljs from "highlight.js/lib/core"
 import parseTimestamps from "./parseTimestamps"
+import { Base64 } from "js-base64"
 
 const languages: Record<string, () => Promise<typeof import("highlight.js/lib/languages/*")>> = {
   "1c": () => import("highlight.js/lib/languages/1c"),
@@ -389,11 +390,11 @@ const parseMarkdown = async (raw: string, opts?: ParseMarkdownOptions) => {
   const codeBlocks = markdownUnparsedDom.querySelectorAll("pre code[data-code]")
 
   const promies = Array.from(codeBlocks).map(async (codeBlock) => {
-    let code: string = window.atob(codeBlock.getAttribute("data-code"))
+    let code: string = Base64.decode(codeBlock.getAttribute("data-code") ?? "")
 
     codeBlock.classList.add("hljs")
 
-    const specifiedLanguage = codeBlock.getAttribute("data-code-language")
+    const specifiedLanguage = codeBlock.getAttribute("data-code-language") ?? "plaintext"
     const languageImportFn = languages[specifiedLanguage] ?? aliases[specifiedLanguage]
 
     if (languageImportFn) {

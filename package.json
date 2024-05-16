@@ -19,6 +19,7 @@
     "discord-markdown": "github:Draconizations/discord-markdown#1f74a7094777d5bdfd123c0aac59d8b10db89b30",
     "dotenv": "^16.0.3",
     "emoji-regex": "^10.2.1",
+    "js-base64": "^3.7.7",
     "moment": "^2.29.4",
     "nprogress": "^0.2.0",
     "prettier": "^3.2.5",
