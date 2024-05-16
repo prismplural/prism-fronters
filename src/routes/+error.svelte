@@ -6,7 +6,7 @@
 <p>{$page.error && $page.error.message}</p>
 
 <svelte:head>
-  <title>Fulmine | Error</title>
+  <title>|Error | pluralkit.xyz</title>
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Fulmine | PluralKit" />
   <meta

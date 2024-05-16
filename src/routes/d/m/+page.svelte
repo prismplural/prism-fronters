@@ -182,7 +182,7 @@
 </main>
 
 <svelte:head>
-  <title>Fulmine | PluralKit</title>
+  <title>Home | pluralkit.xyz</title>
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Fulmine | PluralKit" />
   <meta
