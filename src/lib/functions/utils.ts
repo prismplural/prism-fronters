@@ -6,6 +6,7 @@ export function getParams(data: FormData) {
   let proxyCard = data.get("proxy-avatar-card")
   let pronouns = data.get("pronouns")
   let displayName = data.get("displayname")
+  let noCategories = data.get("no-categories")
 
   let params: string[] = []
   if (layout) params.push(`l=${layout}`)
@@ -15,6 +16,7 @@ export function getParams(data: FormData) {
   if (proxyCard) params.push("pc=y")
   if (pronouns) params.push("prns=n")
   if (displayName) params.push("dn=y")
+  if (noCategories) params.push("nc=y")
 
   return params
 }

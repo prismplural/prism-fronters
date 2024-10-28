@@ -22,6 +22,10 @@
     <label for="f-proxy-avatar-card">Use proxy avatars on member pages</label>
     <input type="checkbox" id="f-proxy-avatar-card" name="proxy-avatar-card" />
   </div>
+  <div class="row" style="align-items: center;">
+    <label for="f-no-categories">Don't categorize members by the alphabet</label>
+    <input type="checkbox" id="f-no-categories" name="no-categories" />
+  </div>
   <hr />
   <div class="row" style="margin-bottom: 0.5rem; margin-top: 0.5rem">
     <label for="f-layout-list">Cards used in lists:</label>

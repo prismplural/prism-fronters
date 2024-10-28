@@ -86,9 +86,11 @@
   >Theme</button
 >
 {#if data.members.length > 0}
-  {#if getListFromLetter(data.members, "", true).length > 0 || data.includeSystem}
-    <h2>Unsorted.</h2>
-    <hr />
+  {#if getListFromLetter(data.members, "", true).length > 0 || data.includeSystem || data.noCategories}
+    {#if !data.noCategories}
+      <h2>Unsorted.</h2>
+      <hr />
+    {/if}
     {#if data.card === "full"}
       <div class="full container">
         {#if data.includeSystem}
@@ -106,28 +108,41 @@
         {#each getListFromLetter(data.members, "", true) as member}
           <MemberCard {member} />
         {/each}
+
+        <!-- If no categories mode has been selected, render every other member. -->
+        {#if data.noCategories}
+          {#each alphabet as letter}
+            {#each getListFromLetter(data.members, letter) as member}
+              <MemberCard {member} />
+            {/each}
+          {/each}
+        {/if}
+
       </div>
     {/if}
   {/if}
-  {#each alphabet as letter}
-    {#if getListFromLetter(data.members, letter).length > 0}
-      <h2>{letter}.</h2>
-      <hr />
-      {#if data.card === "full"}
-        <div class="full container">
-          {#each getListFromLetter(data.members, letter) as member}
-            <PkMember {member} />
-          {/each}
-        </div>
-      {:else}
-        <div class="front container">
-          {#each getListFromLetter(data.members, letter) as member}
-            <MemberCard {member} />
-          {/each}
-        </div>
+  <!-- If no categories mode has been selected, don't render any members again - else, render them. -->
+  {#if !data.noCategories}
+    {#each alphabet as letter}
+      {#if getListFromLetter(data.members, letter).length > 0}
+        <h2>{letter}.</h2>
+        <hr />
+        {#if data.card === "full"}
+          <div class="full container">
+            {#each getListFromLetter(data.members, letter) as member}
+              <PkMember {member} />
+            {/each}
+          </div>
+        {:else}
+          <div class="front container">
+            {#each getListFromLetter(data.members, letter) as member}
+              <MemberCard {member} />
+            {/each}
+          </div>
+        {/if}
       {/if}
-    {/if}
-  {/each}
+    {/each}
+  {/if}
 {:else}
   <h3>This system currently has no members.</h3>
 {/if}
