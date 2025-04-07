@@ -1,6 +1,7 @@
 :root {
   --background: #252525;
   --text: #d4d4d4;
+  --muted: rgba(212, 212, 212, 0.7);
   --block: #191919;
   --highlight: #05aab0;
   --scrollbar: #37352f;
@@ -11,6 +12,7 @@
   :root {
     --background: #f1f1ef;
     --text: #37352f;
+    --muted: rgba(55, 53, 47, 0.7);
     --block: hwb(0 100% 0%);
     --highlight: #05aab0;
     --scrollbar: #d4d4d4;
@@ -21,6 +23,7 @@
 .light-mode {
   --background: #f1f1ef;
   --text: #37352f;
+  --muted: rgba(55, 53, 47, 0.7);
   --block: #ffffff;
   --highlight: #05aab0;
   --scrollbar: #d4d4d4;
@@ -30,6 +33,7 @@
 .dark-mode {
   --background: #252525;
   --text: #d4d4d4;
+  --muted: rgba(212, 212, 212, 0.7);
   --block: #191919;
   --highlight: #05aab0;
   --scrollbar: #37352f;
@@ -516,6 +520,10 @@ pre code {
 ul,
 ol {
   padding-left: 1rem;
+}
+
+small {
+  color: var(--muted);
 }
 
 // discord card stuff
