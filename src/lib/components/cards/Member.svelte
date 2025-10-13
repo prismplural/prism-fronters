@@ -16,6 +16,7 @@
   import AwaitHtml from "../AwaitHtml.svelte"
   import parseMarkdown from "$lib/functions/parseMarkdown"
   import { page } from "$app/stores"
+  import Link from "../Link.svelte"
 
   export let member: Member
 
@@ -70,7 +71,7 @@
     <div style="display: flex; flex-direction: column; gap: 1rem;">
       <button class="button" style="width: auto;" on:click={() => changeTheme(theme)}>Theme</button>
       <span style="align-self: center;"
-        >(<a href={`/s/${member.system}?${$page.url.searchParams.toString()}`}>Back to system</a
+        >(<Link href={`/s/${member.system}`}>Back to system</Link
         >)</span
       >
     </div>

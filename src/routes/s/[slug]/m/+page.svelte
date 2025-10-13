@@ -15,6 +15,7 @@
   import PkSystem from "$lib/components/cards/PkSystem.svelte"
   import PkMember from "$lib/components/cards/PkMember.svelte"
   import { page } from "$app/stores"
+  import Link from "$lib/components/Link.svelte"
 
   export let data: PageData
 
@@ -80,7 +81,7 @@
 
 <h2>{buildSystemListTitle(data.system)}</h2>
 <span style="margin: 1rem auto 0 auto;"
-  >(<a href={`/s/${data.system.id}?${$page.url.searchParams.toString()}`}>Back to system</a>)</span
+  >(<Link href={`/s/${data.system.id}}`}>Back to system</Link>)</span
 >
 <button class="button" style="margin: 1rem auto 0 auto;" on:click={() => changeTheme(theme)}
   >Theme</button

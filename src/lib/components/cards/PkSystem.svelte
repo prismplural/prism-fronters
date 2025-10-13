@@ -11,6 +11,7 @@
   import AwaitHtml from "../AwaitHtml.svelte"
   import parseMarkdown from "$lib/functions/parseMarkdown"
   import { page } from "$app/stores"
+  import Link from "../Link.svelte"
 
   export let system: System
   export let front: any = undefined
@@ -26,7 +27,7 @@
     {#if front && front.members && front.members.length > 0}
       <span class="title"
         ><span
-          >Fronters (<a href={`/f/${system.id}?${$page.url.searchParams.toString()}`}>view</a
+          >Fronters (<Link href={`/f/${system.id}}`}>view</Link
           >)</span
         ></span
       >
@@ -68,7 +69,7 @@
       <div class="col">
         <span class="title">Members</span>
         <span
-          >(See <a href={`/s/${system.id}/m?${$page.url.searchParams.toString()}`}>this page</a
+          >(See <Link href={`/s/${system.id}/m}`}>this page</Link
           >)</span
         >
       </div>
@@ -98,7 +99,7 @@
   {/if}
   <div class="footer">
     <span
-      >System ID: <a href={`/s/${system.id}?${$page.url.searchParams.toString()}`}>{system.id}</a>
+      >System ID: <Link href={`/s/${system.id}}`}>{system.id}</Link>
       {#if system.created}
         | Created on {getCreated(system, true)}
       {/if}

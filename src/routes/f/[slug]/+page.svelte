@@ -15,6 +15,7 @@
   import { shortenCard, shortenLayout } from "$lib/functions/utils"
   import PkSystem from "$lib/components/cards/PkSystem.svelte"
   import PkMember from "$lib/components/cards/PkMember.svelte"
+  import Link from "$lib/components/Link.svelte"
 
   export let data: PageData
 
@@ -27,7 +28,7 @@
 
 <h2>{buildFrontPageTitle(data.system)}</h2>
 <span style="margin: 1rem auto 0 auto;"
-  >(<a href={`/s/${data.system.id}?${$page.url.searchParams.toString()}`}>Back to system</a>)</span
+  >(<Link href={`/s/${data.system.id}}`}>Back to system</Link>)</span
 >
 {#if data.card === "full"}
   <div class="full container">

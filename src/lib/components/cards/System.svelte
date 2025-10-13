@@ -14,6 +14,7 @@
   import AwaitHtml from "../AwaitHtml.svelte"
   import parseMarkdown from "$lib/functions/parseMarkdown"
   import { page } from "$app/stores"
+  import Link from "../Link.svelte"
 
   export let system: System
   export let front: Front
@@ -47,7 +48,7 @@
               {/if}
               {m.name}
             {/each}
-            (<a href={`/f/${system.id}?${$page.url.searchParams.toString()}`}>view</a>)</span
+            (<Link href={`/f/${system.id}`}>view</Link>)</span
           >
         {/if}
       </div>
@@ -56,7 +57,7 @@
     <div style="display: flex; flex-direction: column; gap: 1rem;">
       <button class="button" style="width: auto;" on:click={() => changeTheme(theme)}>Theme</button>
       <span style="align-self: center;"
-        >(<a href={`/s/${system.id}/m?${$page.url.searchParams.toString()}`}>Member list</a>)</span
+        >(<Link href={`/s/${system.id}/m`}>Member list</Link>)</span
       >
     </div>
   </section>

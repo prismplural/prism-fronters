@@ -13,6 +13,7 @@
   import AwaitHtml from "../AwaitHtml.svelte"
   import parseMarkdown from "$lib/functions/parseMarkdown"
   import { page } from "$app/stores"
+  import Link from "../Link.svelte"
 
   export let member: Member
 </script>
@@ -98,11 +99,11 @@
   <div class="footer">
     <span>
       {#if member.system}
-        System ID: <a href={`/s/${member.system}?${$page.url.searchParams.toString()}`}
-          >{member.system}</a
+        System ID: <Link href={`/s/${member.system}`}
+          >{member.system}</Link
         > |
       {/if} Member ID:
-      <a href={`/m/${member.id}?${$page.url.searchParams.toString()}`}>{member.id}</a>
+      <Link href={`/m/${member.id}`}>{member.id}</Link>
       {#if member.created}
         | Created on {getCreated(member, true)}
       {/if}

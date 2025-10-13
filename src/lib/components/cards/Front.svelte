@@ -4,6 +4,7 @@
   import AwaitHtml from "../AwaitHtml.svelte"
   import parseMarkdown from "$lib/functions/parseMarkdown"
   import { page } from "$app/stores"
+  import Link from "../Link.svelte"
 
   export let member: Member
   export let system = false
@@ -12,9 +13,9 @@
   const useProxyAvatar = $page.url.searchParams.get("pl") ? true : false
 </script>
 
-<a
+<Link
   class="front link"
-  href={`${system ? `/s/${member.id}` : `/m/${member.id}`}?${$page.url.searchParams.toString()}`}
+  href={`${system ? `/s/${member.id}` : `/m/${member.id}`}`}
 >
   <div
     class="card front"
@@ -50,4 +51,4 @@
       {/if}
     </div>
   </div>
-</a>
+</Link>
