@@ -33,7 +33,7 @@
         {/if}
         {#if getPronouns(system)}
           <span
-            ><b>Pronouns:</b><AwaitHtml
+            ><b>Pronouns:</b> <AwaitHtml
               htmlPromise={parseMarkdown(getPronouns(system), { embed: true })}
               useTwemoji={true}
             /></span
