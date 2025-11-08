@@ -15,7 +15,7 @@ on:
       base-branch:
         description: "Branch to PR into:"
         required: false
-        default: develop
+        default: main
         type: string
 
 jobs:
