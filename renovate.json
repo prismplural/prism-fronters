@@ -3,6 +3,10 @@
   "prConcurrentLimit": 0,
   "prHourlyLimit": 6,
   "platformAutomerge": true,
+  "major": {
+    "automerge": true,
+    "platformAutomerge": false
+  },
   "baseBranchPatterns": [
     "main"
   ],
