@@ -81,7 +81,7 @@
 
 <h2>{buildSystemListTitle(data.system)}</h2>
 <span style="margin: 1rem auto 0 auto;"
-  >(<Link href={`/s/${data.system.id}}`}>Back to system</Link>)</span
+  >(<Link href={`/s/${data.system.id}`}>Back to system</Link>)</span
 >
 <button class="button" style="margin: 1rem auto 0 auto;" on:click={() => changeTheme(theme)}
   >Theme</button

@@ -27,7 +27,7 @@
     {#if front && front.members && front.members.length > 0}
       <span class="title"
         ><span
-          >Fronters (<Link href={`/f/${system.id}}`}>view</Link
+          >Fronters (<Link href={`/f/${system.id}`}>view</Link
           >)</span
         ></span
       >
@@ -99,7 +99,7 @@
   {/if}
   <div class="footer">
     <span
-      >System ID: <Link href={`/s/${system.id}}`}>{system.id}</Link>
+      >System ID: <Link href={`/s/${system.id}`}>{system.id}</Link>
       {#if system.created}
         | Created on {getCreated(system, true)}
       {/if}

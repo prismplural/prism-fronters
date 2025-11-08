@@ -28,7 +28,7 @@
 
 <h2>{buildFrontPageTitle(data.system)}</h2>
 <span style="margin: 1rem auto 0 auto;"
-  >(<Link href={`/s/${data.system.id}}`}>Back to system</Link>)</span
+  >(<Link href={`/s/${data.system.id}`}>Back to system</Link>)</span
 >
 {#if data.card === "full"}
   <div class="full container">
