@@ -1,15 +1,19 @@
 # pluralkit.xyz
 
-A small website that lets you view some PluralKit data. https://pluralkit.xyz/
+A small website that lets you view people's (public) PluralKit information. https://pluralkit.xyz/. Not affiliated with PluralKit itself, despite the similar url.
 
-Not affiliated with PluralKit itself, despite the similar url :P
+Currently this supports viewing...
+- system info
+- system list
+- system front
+- member info
+With some small other things here and there. I plan on adding support for groups eventually™.
 
-## Warning: This code is bad
-It's a 2 year old project. I didn't fully know what I was doing 2 years ago. Proceed with caution.
+Note that this project was started when I didn't really know what I was doing yet. Code quality might suffer in some areas because of this. I've been working on cleaning stuff up, this takes priority over new features.
 
-## Building
-This project uses [sveltekit](https://kit.svelte.dev/).
+## Contributing
+**Important:** While this repo is a mirror of https://git.pals.gay/fulmine/pluralkit-xyz, contributing is still done over here.
 
-`pnpm` and `nodejs` (>=18.13) are required. Use `pnpm dev` to start a development server. Use `pnpm build` to build for production.
+This project uses [sveltekit](https://kit.svelte.dev/). `pnpm` and `nodejs` (>=18.13) are required. Use `pnpm dev` to start a development server. Use `pnpm build` to build for production.
 
-There's no dockerfile as of right now. This might change whenever I'm too tired of deploying it manually! Or you could open a PR.
+There is no dockerfile as of right now. Feel free to PR one in.
