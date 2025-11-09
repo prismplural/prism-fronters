@@ -32,7 +32,7 @@ importers:
         version: https://codeload.github.com/draconizations/discord-markdown/tar.gz/9d25e45015766779916baea52c37ae0fe12aac73
       dotenv:
         specifier: ^16.0.3
-        version: 16.4.7
+        version: 16.6.1
       emoji-regex:
         specifier: ^10.2.1
         version: 10.6.0
@@ -746,8 +746,8 @@ packages:
     resolution: {tarball: https://codeload.github.com/draconizations/discord-markdown/tar.gz/9d25e45015766779916baea52c37ae0fe12aac73}
     version: 2.5.1
 
-  dotenv@16.4.7:
-    resolution: {integrity: sha512-47qPchRCykZC03FhkYAhrvwU4xDBFIj1QPqaarj6mdM/hgUzfPHcpkHJOn3mJAufFeeAxAzeGsr5X0M4k6fLZQ==}
+  dotenv@16.6.1:
+    resolution: {integrity: sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==}
     engines: {node: '>=12'}
 
   emoji-regex@10.6.0:
@@ -1741,7 +1741,7 @@ snapshots:
       js-base64: 3.7.7
       simple-markdown: 0.7.3
 
-  dotenv@16.4.7: {}
+  dotenv@16.6.1: {}
 
   emoji-regex@10.6.0: {}
 
