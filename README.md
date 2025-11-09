@@ -7,6 +7,7 @@ Currently this supports viewing...
 - system list
 - system front
 - member info
+
 With some small other things here and there. I plan on adding support for groups eventually™.
 
 Note that this project was started when I didn't really know what I was doing yet. Code quality might suffer in some areas because of this. I've been working on cleaning stuff up, this takes priority over new features.
