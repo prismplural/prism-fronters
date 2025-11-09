@@ -15,7 +15,7 @@
     "@sveltejs/adapter-static": "^3.0.0",
     "@sveltejs/kit": "^2.0.0",
     "@sveltejs/vite-plugin-svelte": "^3.0.0",
-    "@twemoji/api": "^15.0.3",
+    "@twemoji/api": "^17.0.0",
     "discord-markdown": "github:draconizations/discord-markdown#9d25e45015766779916baea52c37ae0fe12aac73",
     "dotenv": "^16.0.3",
     "emoji-regex": "^10.2.1",
