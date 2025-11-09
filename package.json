@@ -17,7 +17,7 @@
     "@sveltejs/vite-plugin-svelte": "^3.0.0",
     "@twemoji/api": "^15.0.3",
     "discord-markdown": "github:draconizations/discord-markdown#9d25e45015766779916baea52c37ae0fe12aac73",
-    "dotenv": "^16.0.3",
+    "dotenv": "^17.0.0",
     "emoji-regex": "^10.2.1",
     "js-base64": "^3.7.7",
     "moment": "^2.29.4",
