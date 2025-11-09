@@ -16,7 +16,7 @@
       <a class="button" href="/s">System</a>
       <a class="button" href="/f">Front</a>
       <a class="button" href="/m">Member</a>
-      <a class="button" href="https://codeberg.org/fulmine/pk-fulmine">Source</a>
+      <a class="button" href="https://codeberg.org/fulmine/pluralkit-xyz">Source</a>
       <button class="button" on:click={() => changeTheme(theme)}>Theme</button>
     </nav>
   </section>
