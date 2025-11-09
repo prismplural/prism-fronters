@@ -50,7 +50,7 @@ importers:
         version: 3.5.3
       prettier-plugin-svelte:
         specifier: ^3.2.3
-        version: 3.3.3(prettier@3.5.3)(svelte@5.43.5)
+        version: 3.4.0(prettier@3.5.3)(svelte@5.43.5)
       sass:
         specifier: ^1.62.1
         version: 1.86.3
@@ -864,8 +864,8 @@ packages:
     resolution: {integrity: sha512-3Ybi1tAuwAP9s0r1UQ2J4n5Y0G05bJkpUIO0/bI9MhwmD70S5aTWbXGBwxHrelT+XM1k6dM0pk+SwNkpTRN7Pg==}
     engines: {node: ^10 || ^12 || >=14}
 
-  prettier-plugin-svelte@3.3.3:
-    resolution: {integrity: sha512-yViK9zqQ+H2qZD1w/bH7W8i+bVfKrD8GIFjkFe4Thl6kCT9SlAsXVNmt3jCvQOCsnOhcvYgsoVlRV/Eu6x5nNw==}
+  prettier-plugin-svelte@3.4.0:
+    resolution: {integrity: sha512-pn1ra/0mPObzqoIQn/vUTR3ZZI6UuZ0sHqMK5x2jMLGrs53h0sXhkVuDcrlssHwIMk7FYrMjHBPoUSyyEEDlBQ==}
     peerDependencies:
       prettier: ^3.0.0
       svelte: ^3.2.0 || ^4.0.0-next.0 || ^5.0.0-next.0
@@ -1651,7 +1651,7 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  prettier-plugin-svelte@3.3.3(prettier@3.5.3)(svelte@5.43.5):
+  prettier-plugin-svelte@3.4.0(prettier@3.5.3)(svelte@5.43.5):
     dependencies:
       prettier: 3.5.3
       svelte: 5.43.5
