@@ -50,7 +50,7 @@ importers:
         version: 3.6.2
       prettier-plugin-svelte:
         specifier: ^3.2.3
-        version: 3.4.0(prettier@3.6.2)(svelte@5.43.5)
+        version: 3.4.0(prettier@3.5.3)(svelte@5.43.5)
       sass:
         specifier: ^1.62.1
         version: 1.93.3
@@ -1680,8 +1680,9 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  prettier-plugin-svelte@3.4.0(prettier@3.6.2)(svelte@5.43.5):
-      prettier: 3.6.2
+  prettier-plugin-svelte@3.4.3(prettier@3.6.2)(svelte@5.43.5):
+    dependencies:
+      prettier: 3.5.3
       svelte: 5.43.5
 
   prettier@3.6.2: {}
