@@ -28,8 +28,8 @@ importers:
         specifier: ^17.0.0
         version: 17.0.2
       discord-markdown:
-        specifier: github:draconizations/discord-markdown#9d25e45015766779916baea52c37ae0fe12aac73
-        version: https://codeload.github.com/draconizations/discord-markdown/tar.gz/9d25e45015766779916baea52c37ae0fe12aac73
+        specifier: github:draconizations/discord-markdown#f40d97795f2c8913f6e621daae375d6973fefd63
+        version: https://codeload.github.com/draconizations/discord-markdown/tar.gz/f40d97795f2c8913f6e621daae375d6973fefd63
       dotenv:
         specifier: ^17.0.0
         version: 17.2.3
@@ -606,8 +606,8 @@ packages:
   devalue@5.5.0:
     resolution: {integrity: sha512-69sM5yrHfFLJt0AZ9QqZXGCPfJ7fQjvpln3Rq5+PS03LD32Ost1Q9N+eEnaQwGRIriKkMImXD56ocjQmfjbV3w==}
 
-  discord-markdown@https://codeload.github.com/draconizations/discord-markdown/tar.gz/9d25e45015766779916baea52c37ae0fe12aac73:
-    resolution: {tarball: https://codeload.github.com/draconizations/discord-markdown/tar.gz/9d25e45015766779916baea52c37ae0fe12aac73}
+  discord-markdown@https://codeload.github.com/draconizations/discord-markdown/tar.gz/f40d97795f2c8913f6e621daae375d6973fefd63:
+    resolution: {tarball: https://codeload.github.com/draconizations/discord-markdown/tar.gz/f40d97795f2c8913f6e621daae375d6973fefd63}
     version: 2.5.1
 
   dotenv@17.2.3:
@@ -1321,7 +1321,7 @@ snapshots:
 
   devalue@5.5.0: {}
 
-  discord-markdown@https://codeload.github.com/draconizations/discord-markdown/tar.gz/9d25e45015766779916baea52c37ae0fe12aac73:
+  discord-markdown@https://codeload.github.com/draconizations/discord-markdown/tar.gz/f40d97795f2c8913f6e621daae375d6973fefd63:
     dependencies:
       js-base64: 3.7.8
       simple-markdown: 0.7.3
