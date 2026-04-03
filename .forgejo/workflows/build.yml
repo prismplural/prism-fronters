@@ -13,7 +13,7 @@ jobs:
       - name: Setup Docker
         uses: https://git.pals.gay/internal/docker-setup-action@bed5bc638575c899233a8249a92e70b90e74f66b
       - name: Login to package registry
-        uses: https://git.pals.gay/internal/docker-login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3.7.0
+        uses: https://git.pals.gay/internal/docker-login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4.1.0
         with:
           registry: git.pals.gay
           username: fulmine
