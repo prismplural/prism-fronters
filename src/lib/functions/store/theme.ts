@@ -3,7 +3,7 @@ import { browser } from "$app/environment"
 
 let defaultValue = "dark"
 const initialValue = browser
-  ? window.localStorage.getItem("pk-fulmn-theme") ?? defaultValue
+  ? (window.localStorage.getItem("pk-fulmn-theme") ?? defaultValue)
   : defaultValue
 
 export const theme = writable<string>(initialValue)

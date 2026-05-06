@@ -81,5 +81,5 @@
       ? getColor(data.front.members[0], true)
       : ""}
   />
-  <meta name="robots" content="noindex">
+  <meta name="robots" content="noindex" />
 </svelte:head>

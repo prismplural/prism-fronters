@@ -99,9 +99,7 @@
   <div class="footer">
     <span>
       {#if member.system}
-        System ID: <Link href={`/s/${member.system}`}
-          >{member.system}</Link
-        > |
+        System ID: <Link href={`/s/${member.system}`}>{member.system}</Link> |
       {/if} Member ID:
       <Link href={`/m/${member.id}`}>{member.id}</Link>
       {#if member.created}

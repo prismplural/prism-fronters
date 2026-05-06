@@ -8,7 +8,8 @@ export async function load({ fetch, params, url }) {
   const layout = selectLayout(url.searchParams)
   const card = selectCard(url.searchParams)
   const includeSystem = url.searchParams.get("s") || url.searchParams.get("system") ? true : false
-  const noCategories = url.searchParams.get("nc") || url.searchParams.get("nocategories") ? true : false
+  const noCategories =
+    url.searchParams.get("nc") || url.searchParams.get("nocategories") ? true : false
 
   let system: any
   system = await fetch(`https://api.pluralkit.me/v2/systems/${sid}`, {

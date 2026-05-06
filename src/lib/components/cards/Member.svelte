@@ -71,8 +71,7 @@
     <div style="display: flex; flex-direction: column; gap: 1rem;">
       <button class="button" style="width: auto;" on:click={() => changeTheme(theme)}>Theme</button>
       <span style="align-self: center;"
-        >(<Link href={`/s/${member.system}`}>Back to system</Link
-        >)</span
+        >(<Link href={`/s/${member.system}`}>Back to system</Link>)</span
       >
     </div>
   </section>

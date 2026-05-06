@@ -33,7 +33,8 @@
         {/if}
         {#if getPronouns(system)}
           <span
-            ><b>Pronouns:</b> <AwaitHtml
+            ><b>Pronouns:</b>
+            <AwaitHtml
               htmlPromise={parseMarkdown(getPronouns(system), { embed: true })}
               useTwemoji={true}
             /></span
@@ -56,9 +57,7 @@
 
     <div style="display: flex; flex-direction: column; gap: 1rem;">
       <button class="button" style="width: auto;" on:click={() => changeTheme(theme)}>Theme</button>
-      <span style="align-self: center;"
-        >(<Link href={`/s/${system.id}/m`}>Member list</Link>)</span
-      >
+      <span style="align-self: center;">(<Link href={`/s/${system.id}/m`}>Member list</Link>)</span>
     </div>
   </section>
   <div class="content">

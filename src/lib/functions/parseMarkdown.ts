@@ -1,5 +1,5 @@
-import pkg from 'discord-markdown';
-const { toHTML } = pkg;  // unsure why this is required, but it 5xx's otherwise lol
+import pkg from "discord-markdown"
+const { toHTML } = pkg // unsure why this is required, but it 5xx's otherwise lol
 
 import hljs from "highlight.js/lib/core"
 import parseTimestamps from "./parseTimestamps"

@@ -25,12 +25,7 @@
       </span>
     {/if}
     {#if front && front.members && front.members.length > 0}
-      <span class="title"
-        ><span
-          >Fronters (<Link href={`/f/${system.id}`}>view</Link
-          >)</span
-        ></span
-      >
+      <span class="title"><span>Fronters (<Link href={`/f/${system.id}`}>view</Link>)</span></span>
       <span style="margin-bottom: 0.5rem;">
         {#each front.members as member, index}
           {member.name}{#if index !== front.members.length - 1},{" "}{/if}
@@ -68,10 +63,7 @@
       {/if}
       <div class="col">
         <span class="title">Members</span>
-        <span
-          >(See <Link href={`/s/${system.id}/m}`}>this page</Link
-          >)</span
-        >
+        <span>(See <Link href={`/s/${system.id}/m}`}>this page</Link>)</span>
       </div>
     </div>
     {#if system.description}

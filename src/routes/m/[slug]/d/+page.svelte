@@ -31,7 +31,7 @@
   <meta property="og:description" content={buildMemberEmbedDescription(data.member)} />
   <meta property="og:image" content={getAvatar(data.member)} />
   <meta name="theme-color" content={getColor(data.member, true)} />
-  <meta name="robots" content="noindex">
+  <meta name="robots" content="noindex" />
 </svelte:head>
 
 <style lang="scss">

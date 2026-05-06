@@ -13,10 +13,7 @@
   const useProxyAvatar = $page.url.searchParams.get("pl") ? true : false
 </script>
 
-<Link
-  class="front link"
-  href={`${system ? `/s/${member.id}` : `/m/${member.id}`}`}
->
+<Link class="front link" href={`${system ? `/s/${member.id}` : `/m/${member.id}`}`}>
   <div
     class="card front"
     style={getColor(member) ? `border-bottom: 4px solid ${getColor(member)};` : ""}
