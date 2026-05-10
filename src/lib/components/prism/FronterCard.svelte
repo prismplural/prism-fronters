@@ -38,7 +38,7 @@
     <MemberAvatar src={avatar} name={rawName} {color} size="md" />
     <div class="fronter-card-title">
       <h2>
-        <AwaitHtml htmlPromise={new Promise((res) => res(rawName))} useTwemoji={true} />
+        <AwaitHtml html={rawName} useTwemoji={true} />
       </h2>
     </div>
   </div>
@@ -46,7 +46,7 @@
   {#if showPronouns}
     <div class="card-meta">
       <PrismChip>
-        <AwaitHtml htmlPromise={Promise.resolve(pronouns)} useTwemoji={true} />
+        <AwaitHtml html={pronouns} useTwemoji={true} />
       </PrismChip>
     </div>
   {/if}
