@@ -1,6 +1,11 @@
-# pluralkit.xyz
+# Prism Status
 
-A small website that lets you view people's (public) PluralKit information. https://pluralkit.xyz/. Not affiliated with PluralKit itself, despite the similar url.
+A Prism-native public status dashboard for viewing public PluralKit fronting data.
+
+This repository is forked from [fulmine/pluralkit-xyz](https://codeberg.org/fulmine/pluralkit-xyz),
+a small website for viewing public PluralKit information. The upstream project is
+MIT licensed and is not affiliated with PluralKit. Prism Status keeps upstream
+history intact and tracks the original project through the `upstream` git remote.
 
 Currently this supports viewing...
 
@@ -23,4 +28,4 @@ This project uses [sveltekit](https://kit.svelte.dev/). `pnpm` and `nodejs` (>=1
 
 Make sure to set the following ENV variables when running with Docker:
 
-- `ORIGIN` to your hostname, including the protocol (`https://pluralkit.xyz` by default)
+- `ORIGIN` to your hostname, including the protocol (`https://status.prismplural.com` for Prism deployments)
