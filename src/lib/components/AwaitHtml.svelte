@@ -3,15 +3,24 @@
 
   export let htmlPromise: Promise<string> = Promise.resolve("")
   export let useTwemoji: boolean = false
+
+  function escapeHtml(value: string) {
+    return value
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#39;")
+  }
 </script>
 
 {#await htmlPromise}
   (loading...)
 {:then html}
   {#if useTwemoji}
-    {@html twemoji.parse(html) ?? ""}
+    {@html twemoji.parse(escapeHtml(html ?? "")) ?? ""}
   {:else}
-    {@html html ?? ""}
+    {@html escapeHtml(html ?? "")}
   {/if}
 {:catch error}
   (failed to parse: {error?.message ?? String(error)})
