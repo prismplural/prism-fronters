@@ -2,7 +2,7 @@ import { error } from "@sveltejs/kit"
 import type { Member, Switch } from "$lib/types"
 
 const apiHeaders = {
-  origin: "https://prismplural.org",
+  origin: "https://prismplural.com",
 }
 
 async function getPublicMember(fetch, memberId: string) {

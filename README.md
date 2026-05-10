@@ -34,5 +34,5 @@ pnpm build
 Set `ORIGIN` to the deployed hostname, including the protocol.
 
 ```sh
-ORIGIN=https://fronters.prismplural.org
+ORIGIN=https://fronters.prismplural.com
 ```

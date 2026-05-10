@@ -43,6 +43,11 @@
         Those requests include the PluralKit system ID and, when history is public, member IDs in
         API request URLs. Prism Fronters does not ask for or store PluralKit API tokens.
       </p>
+      <p>
+        For some third-party avatar URLs, Prism Fronters may request the image server-side and serve
+        it from this site. If the remote avatar host blocks or removes the image, Prism Fronters
+        serves a generic avatar fallback instead.
+      </p>
     </section>
 
     <section class="policy-section prism-surface">

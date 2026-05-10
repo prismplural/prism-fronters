@@ -20,7 +20,7 @@
 
   <footer class="prism-footer">
     <nav aria-label="Footer links">
-      <a href="https://prismplural.org" target="_blank" rel="noreferrer">Learn about Prism</a>
+      <a href="https://prismplural.com" target="_blank" rel="noreferrer">Learn about Prism</a>
       <a href="/privacy">Privacy</a>
       <a href="https://github.com/prismplural/prism-fronters" target="_blank" rel="noreferrer">
         Source on GitHub
