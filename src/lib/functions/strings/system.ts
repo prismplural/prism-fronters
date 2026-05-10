@@ -3,14 +3,14 @@ import moment from "moment"
 
 // Builds the page title for the current fronters page
 export function buildFrontPageTitle(system: System) {
-  if (system.name) return `Currently fronting in ${system.name}!`
-  else return `System with id ${system.id}'s front...`
+  if (system.name) return `${system.name}'s current front`
+  else return `Current front for system ${system.id}`
 }
 
 // Builds the page title for the fronters if there's no fronters
 export function buildSwitchOutTitle(system: System) {
-  if (system.name) return `${system.name} are currently switched out!`
-  else return `System with id ${system.id} are currently switched out.`
+  if (system.name) return `No public fronters are listed for ${system.name}.`
+  else return `No public fronters are listed for system ${system.id}.`
 }
 
 // Builds the opengraph embed title for the current fronters page
@@ -28,7 +28,7 @@ export function buildSystemEmbedTitle(system: System) {
 
 // Creates the opengraph embed body for a system page
 export function buildSystemEmbedDescription(system: System) {
-  return `Read some more about ${system.name ? system.name : `system "${system.id}"`}!`
+  return `View public PluralKit data for ${system.name ? system.name : `system "${system.id}"`}.`
 }
 
 export function getPronouns(system: System) {
@@ -76,5 +76,5 @@ export function buildSystemListTitle(system: System) {
 
 export function buildSystemListDescription(system: System) {
   let name = system.name ?? `(${system.id})`
-  return `View a list of all members in ${name}!`
+  return `View public PluralKit members in ${name}.`
 }

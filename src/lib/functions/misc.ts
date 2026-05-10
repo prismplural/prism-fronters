@@ -1,22 +1,21 @@
 import { browser } from "$app/environment"
 import type { Writable } from "svelte/store"
-
-let theme: string = browser ? (localStorage.getItem("pk-fulmn-theme") ?? "dark") : "dark"
+import theme from "$lib/functions/store/theme"
 
 export default (store: Writable<string>) => {
-  let value = "dark"
-  store.subscribe((val) => (value = val))
-
-  if (value == "dark") {
-    store.set("light")
-  } else if (value == "light") {
-    store.set("dark")
-  }
-
-  theme = value
-  setBodyTheme(document.body as HTMLBodyElement)
+  store.update((value) => (value === "dark" ? "light" : "dark"))
 }
 
 export function setBodyTheme(body: HTMLBodyElement) {
-  body.className = theme + "-mode"
+  if (!browser) return
+
+  const unsubscribe = theme.subscribe((value) => {
+    body.classList.remove("dark-mode", "light-mode")
+    body.classList.add(`${value}-mode`)
+    body.dataset.theme = value
+  })
+
+  return {
+    destroy: unsubscribe,
+  }
 }

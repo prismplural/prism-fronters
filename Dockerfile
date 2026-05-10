@@ -16,5 +16,5 @@ COPY --from=builder /app/node_modules node_modules/
 COPY package.json .
 EXPOSE 3000
 ENV NODE_ENV=production
-ENV ORIGIN=https://pluralkit.xyz
+ENV ORIGIN=https://fronters.prismplural.org
 CMD [ "node", "build" ]

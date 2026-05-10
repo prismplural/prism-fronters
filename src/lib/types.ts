@@ -24,6 +24,12 @@ export interface Front {
   members?: Member[]
 }
 
+export interface Switch {
+  id: string
+  timestamp: string
+  members: string[]
+}
+
 export interface System {
   name?: string
   uuid: string

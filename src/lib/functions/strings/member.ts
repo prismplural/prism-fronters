@@ -128,10 +128,10 @@ export function buildMemberEmbedTitle(system: System, member: Member) {
 
 // Creates the opengraph embed body for a member page
 export function buildMemberEmbedDescription(member: Member) {
-  return `Read some more about ${member.name}!`
+  return `View public PluralKit data for ${member.name}.`
 }
 
-// Returns the text that shows when switched out
+// Returns the text shown when no public fronters are available.
 export function buildSwitchOutText() {
-  return "Currently switched out!"
+  return "No public fronters right now."
 }

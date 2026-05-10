@@ -1,38 +1,50 @@
 <script lang="ts">
-  import theme from "$lib/functions/store/theme"
-  import changeTheme from "$lib/functions/misc"
+  import { enhance } from "$app/forms"
+  import InfoBanner from "$lib/components/prism/InfoBanner.svelte"
+  import PrismButton from "$lib/components/prism/PrismButton.svelte"
+  import PrismShell from "$lib/components/prism/PrismShell.svelte"
 </script>
 
-<main class="container info">
-  <h1>pluralkit.xyz</h1>
-  <section class="content">
-    <p>A small website that lets you view some PluralKit data.</p>
-    <p>
-      Looking for the official PluralKit documentation? <a href="https://pluralkit.me"
-        >pluralkit.me</a
-      > is the place to go!
-    </p>
-    <nav class="row">
-      <a class="button" href="/s">System</a>
-      <a class="button" href="/f">Front</a>
-      <a class="button" href="/m">Member</a>
-      <a class="button" href="https://codeberg.org/fulmine/pluralkit-xyz">Source</a>
-      <button class="button" on:click={() => changeTheme(theme)}>Theme</button>
-    </nav>
-  </section>
-</main>
+<PrismShell>
+  <div class="page-stack">
+    <section class="hero-panel">
+      <div class="hero-content">
+        <p class="page-kicker">Public PluralKit bridge</p>
+        <h1 class="page-title">Prism Fronters</h1>
+        <p class="page-copy">
+          View a public PluralKit system's current front and recent fronting history.
+        </p>
+
+        <form class="setup-form" method="POST" action="/f" use:enhance>
+          <label class="form-label" for="front-sid">
+            System ID
+            <span>Use a public PluralKit system ID. Private fronts stay private.</span>
+          </label>
+          <div class="form-row">
+            <input required id="front-sid" name="sid" placeholder="abcde" autocomplete="off" />
+            <PrismButton type="submit">
+              <span class="ph-duotone ph-users-three" aria-hidden="true"></span>
+              View front
+            </PrismButton>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <InfoBanner title="Powered by public PluralKit data" icon="ph-arrows-clockwise">
+      Prism Fronters only reads public PluralKit front and switch history responses.
+    </InfoBanner>
+  </div>
+</PrismShell>
 
 <svelte:head>
-  <title>Home | pluralkit.xyz</title>
+  <title>Prism Fronters</title>
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Fulmine | PluralKit" />
+  <meta property="og:title" content="Prism Fronters" />
   <meta
     property="og:description"
-    content="A small website that lets you view some PluralKit data."
+    content="A Prism-native public dashboard for PluralKit fronts and recent fronting history."
   />
-  <meta property="og:url" content="https://pluralkit.xyz" />
-  <meta property="og:image" content="/favicon.png" />
-  <meta name="theme-color" content="#ffffff" />
+  <meta property="og:image" content="/favicon.jpg" />
+  <meta name="theme-color" content="#B498C2" />
 </svelte:head>
-
-<svelte:body />
