@@ -59,7 +59,8 @@
         the site, such as IP address, request path, user agent, and timestamp.
       </p>
       <p>
-        Your theme preference is stored in your browser's localStorage under the
+        Prism Fronters follows your browser or operating system color scheme by default. If a theme
+        preference is set in the future, it may be stored in your browser's localStorage under the
         <code>prism-fronters-theme</code> key. It is not sent to Prism Fronters as an account setting.
       </p>
     </section>

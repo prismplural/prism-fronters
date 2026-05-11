@@ -11,7 +11,7 @@ export function setBodyTheme(body: HTMLBodyElement) {
 
   const unsubscribe = theme.subscribe((value) => {
     body.classList.remove("dark-mode", "light-mode")
-    body.classList.add(`${value}-mode`)
+    if (value !== "system") body.classList.add(`${value}-mode`)
     body.dataset.theme = value
   })
 
