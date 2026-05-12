@@ -35,14 +35,14 @@
     return () => window.clearInterval(timer)
   })
 
-  function formatSwitchTime(timestamp: string) {
+  function formatSwitchTime(timestamp: string, useLocalTimeZone: boolean) {
     const options: Intl.DateTimeFormatOptions = {
       month: "short",
       day: "numeric",
       hour: "numeric",
       minute: "2-digit",
     }
-    if (!useLocalTimes) options.timeZone = "UTC"
+    if (!useLocalTimeZone) options.timeZone = "UTC"
 
     return new Intl.DateTimeFormat("en-US", options).format(new Date(timestamp))
   }
@@ -141,8 +141,12 @@
                 <div class="history-member-copy">
                   <strong>{switchLabel(switchEntry.members)}</strong>
                   <div class="history-inline-meta">
-                    <time datetime={sessionStart}>{formatSwitchTime(sessionStart)}</time>
-                    <span>{sessionEnd ? formatSwitchTime(sessionEnd) : "Ongoing"}</span>
+                    <time datetime={sessionStart}
+                      >{formatSwitchTime(sessionStart, useLocalTimes)}</time
+                    >
+                    <span
+                      >{sessionEnd ? formatSwitchTime(sessionEnd, useLocalTimes) : "Ongoing"}</span
+                    >
                     <span>{formatDuration(sessionStart, sessionEnd ?? now)}</span>
                   </div>
                 </div>
