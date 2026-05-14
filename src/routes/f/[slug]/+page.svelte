@@ -132,41 +132,46 @@
       </div>
 
       {#if recentSwitches.length > 0}
-        <div class="history-list">
+        <ul class="history-list">
           {#each recentSwitches as switchEntry, index}
             {@const sessionStart = switchEntry.timestamp}
             {@const sessionEnd = index > 0 ? recentSwitches[index - 1].timestamp : null}
-            <article class="history-row">
-              <div class="history-members">
-                <div class="history-member-copy">
-                  <strong>{switchLabel(switchEntry.members)}</strong>
-                  <div class="history-inline-meta">
-                    <time datetime={sessionStart}
-                      >{formatSwitchTime(sessionStart, useLocalTimes)}</time
-                    >
-                    <span
-                      >{sessionEnd ? formatSwitchTime(sessionEnd, useLocalTimes) : "Ongoing"}</span
-                    >
-                    <span>{formatDuration(sessionStart, sessionEnd ?? now)}</span>
+            <li>
+              <article
+                class="history-row"
+                aria-labelledby={`row-${index}-fronters`}
+              >
+                <div class="history-members">
+                  <div class="history-member-copy">
+                    <strong id={`row-${index}-fronters`}>{switchLabel(switchEntry.members)}</strong>
+                    <div class="history-inline-meta">
+                      <time datetime={sessionStart}
+                        >{formatSwitchTime(sessionStart, useLocalTimes)}</time
+                      >
+                      <span
+                        >{sessionEnd ? formatSwitchTime(sessionEnd, useLocalTimes) : "Ongoing"}</span
+                      >
+                      <span>{formatDuration(sessionStart, sessionEnd ?? now)}</span>
+                    </div>
+                  </div>
+                  <div class="avatar-stack" aria-hidden="true">
+                    {#each switchEntry.members.slice(0, 5) as memberId}
+                      {@const member = data.memberMap[memberId]}
+                      <MemberAvatar
+                        src={member ? getMemberAvatar(member) : ""}
+                        name={memberLabel(memberId)}
+                        color={member
+                          ? getMemberColor(member) || "var(--prism-purple)"
+                          : "var(--prism-purple)"}
+                        size="sm"
+                      />
+                    {/each}
                   </div>
                 </div>
-                <div class="avatar-stack" aria-label="Fronters for this switch">
-                  {#each switchEntry.members.slice(0, 5) as memberId}
-                    {@const member = data.memberMap[memberId]}
-                    <MemberAvatar
-                      src={member ? getMemberAvatar(member) : ""}
-                      name={memberLabel(memberId)}
-                      color={member
-                        ? getMemberColor(member) || "var(--prism-purple)"
-                        : "var(--prism-purple)"}
-                      size="sm"
-                    />
-                  {/each}
-                </div>
-              </div>
-            </article>
+              </article>
+            </li>
           {/each}
-        </div>
+        </ul>
       {:else if data.historyUnavailable}
         <EmptyState title="History is not public" icon="ph-eye-slash">
           Recent switch history is not available from PluralKit for this system.

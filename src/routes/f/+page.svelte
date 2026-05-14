@@ -1,8 +1,19 @@
 <script lang="ts">
   import { enhance } from "$app/forms"
+  import { tick } from "svelte"
   import InfoBanner from "$lib/components/prism/InfoBanner.svelte"
   import PrismButton from "$lib/components/prism/PrismButton.svelte"
   import PrismShell from "$lib/components/prism/PrismShell.svelte"
+  import type { ActionData } from "./$types"
+
+  export let form: ActionData | null = null
+  let inputEl: HTMLInputElement
+
+  const enhanceWithFocus = () => async ({ update }: { update: () => Promise<void> }) => {
+    await update()
+    await tick()
+    if (form?.error) inputEl?.focus()
+  }
 </script>
 
 <PrismShell pageClass="narrow">
@@ -15,15 +26,29 @@
           Enter a PluralKit system ID to show its current front and recent history.
         </p>
 
-        <form class="setup-form" method="POST" use:enhance>
+        <form class="setup-form" method="POST" use:enhance={enhanceWithFocus}>
           <label class="form-label" for="front-sid">
             System ID
-            <span>Only public PluralKit front data can be shown.</span>
+            {#if !form?.error}
+              <span>Only public PluralKit front data can be shown.</span>
+            {/if}
           </label>
           <div class="form-row">
-            <input required id="front-sid" name="sid" placeholder="abcde" autocomplete="off" />
+            <input
+              bind:this={inputEl}
+              required
+              id="front-sid"
+              name="sid"
+              placeholder="abcde"
+              autocomplete="off"
+              aria-describedby="front-sid-error"
+              aria-invalid={form?.error ? "true" : undefined}
+            />
             <PrismButton type="submit">View front</PrismButton>
           </div>
+          <p id="front-sid-error" class="form-error" role="status" aria-live="polite">
+            {form?.error ?? ""}
+          </p>
         </form>
       </div>
     </section>
