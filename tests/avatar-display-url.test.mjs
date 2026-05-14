@@ -7,12 +7,21 @@ test("returns empty string for falsy src", () => {
   assert.equal(getAvatarDisplayUrl(null), "")
   assert.equal(getAvatarDisplayUrl(undefined), "")
 })
-test("returns relative URLs unchanged", () => {
-  // URL parse fails on a relative path → fall through to raw src
-  assert.equal(getAvatarDisplayUrl("/static/foo.png"), "/static/foo.png")
+test("returns empty for relative URLs", () => {
+  // URL parse fails on a relative path → empty (not passed through)
+  assert.equal(getAvatarDisplayUrl("/static/foo.png"), "")
 })
-test("returns http URLs unchanged (browser blocks mixed-content separately)", () => {
-  assert.equal(getAvatarDisplayUrl("http://example.com/a.png"), "http://example.com/a.png")
+test("returns empty for http URLs", () => {
+  assert.equal(getAvatarDisplayUrl("http://example.com/a.png"), "")
+})
+test("returns empty for javascript: URIs", () => {
+  assert.equal(getAvatarDisplayUrl("javascript:alert(1)"), "")
+})
+test("returns empty for data: URIs", () => {
+  assert.equal(getAvatarDisplayUrl("data:text/html,<script>"), "")
+})
+test("returns empty for vbscript: URIs", () => {
+  assert.equal(getAvatarDisplayUrl("vbscript:msgbox()"), "")
 })
 test("proxies any https:// external URL", () => {
   const result = getAvatarDisplayUrl("https://cdn.discordapp.com/foo.png")

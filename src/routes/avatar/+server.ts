@@ -12,6 +12,11 @@ const fallbackSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="
   <path d="M24 75c4-16 14-24 30-24s26 8 30 24" fill="#b498c2" opacity=".45"/>
 </svg>`
 
+const hardeningHeaders = {
+  "X-Content-Type-Options": "nosniff",
+  "Content-Security-Policy": "default-src 'none'; img-src 'self'; style-src 'unsafe-inline'",
+}
+
 function fallbackResponse() {
   return new Response(fallbackSvg, {
     headers: {
@@ -19,6 +24,7 @@ function fallbackResponse() {
       // the edge or the user's browser
       "Cache-Control": "no-store",
       "Content-Type": "image/svg+xml; charset=utf-8",
+      ...hardeningHeaders,
     },
   })
 }
@@ -55,7 +61,19 @@ export const GET: RequestHandler = async ({ fetch, url }) => {
         "User-Agent": userAgent,
         accept: "image/avif,image/webp,image/png,image/jpeg,image/*;q=0.8",
       },
+      // redirect: "manual" so a redirect to a private host can't
+      // bypass assertPublicHost above.
+      redirect: "manual",
+      // Abort after 5 s so a slow upstream can't hold a function open.
+      signal: AbortSignal.timeout(5000),
     })
+
+    // Treat redirects as failures — the redirect target has not been
+    // SSRF-checked.
+    if (response.type === "opaqueredirect" || (response.status >= 300 && response.status < 400)) {
+      return fallbackResponse()
+    }
+
     const contentType = response.headers.get("content-type") ?? ""
     const contentLength = Number(response.headers.get("content-length") ?? "0")
     if (
@@ -65,12 +83,41 @@ export const GET: RequestHandler = async ({ fetch, url }) => {
     ) {
       return fallbackResponse()
     }
-    const body = await response.arrayBuffer()
-    if (body.byteLength > maxAvatarBytes) return fallbackResponse()
+
+    // Block SVG: it can contain <script> and would execute same-origin
+    // if served from /avatar.
+    if (contentType.toLowerCase().startsWith("image/svg")) {
+      return fallbackResponse()
+    }
+
+    // Streaming size enforcement — prevents a lying Content-Length from
+    // causing a large allocation before we can check.
+    const chunks: Uint8Array[] = []
+    let total = 0
+    const reader = response.body?.getReader()
+    if (!reader) return fallbackResponse()
+    try {
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+        total += value.byteLength
+        if (total > maxAvatarBytes) {
+          await reader.cancel()
+          return fallbackResponse()
+        }
+        chunks.push(value)
+      }
+    } finally {
+      reader.releaseLock?.()
+    }
+    const body = new Uint8Array(total)
+    let offset = 0
+    for (const chunk of chunks) { body.set(chunk, offset); offset += chunk.byteLength }
     return new Response(body, {
       headers: {
         "Cache-Control": "public, max-age=3600, s-maxage=86400",
         "Content-Type": contentType,
+        ...hardeningHeaders,
       },
     })
   } catch {

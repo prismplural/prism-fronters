@@ -22,7 +22,7 @@
     </a>
   </header>
 
-  <main id="main-content" class={`prism-page ${pageClass}`}>
+  <main id="main-content" tabindex="-1" class={`prism-page ${pageClass}`}>
     <slot />
   </main>
 

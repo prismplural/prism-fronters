@@ -11,8 +11,9 @@ export function isPrivateAddress(addr: string): boolean {
   if (addr.includes(":")) {
     const lower = addr.toLowerCase()
     if (lower === "::1" || lower === "::") return true
-    // Link-local fe80::/10 (covers fe80, fe9, fea, feb prefixes)
-    if (/^fe[89ab][0-9a-f]?:/.test(lower) || lower.startsWith("fe80:")) return true
+    // Link-local fe80::/10 (covers fe80, fe90, fea0, feb0 groups;
+    // requires the full 4-nibble prefix to avoid false positives)
+    if (/^fe[89ab][0-9a-f]:/.test(lower)) return true
     // Unique-local fc00::/7
     if (/^f[cd][0-9a-f]{2}:/.test(lower)) return true
     return false
@@ -30,6 +31,10 @@ export function isPrivateAddress(addr: string): boolean {
   if (a === 192 && b === 168) return true           // RFC 1918
   if (a === 172 && b >= 16 && b <= 31) return true  // RFC 1918
   if (a === 169 && b === 254) return true           // link-local (AWS metadata!)
+  if (a === 100 && b >= 64 && b <= 127) return true  // RFC 6598 CGNAT (100.64.0.0/10)
+  if (a >= 224) return true                          // multicast (224.0.0.0/4),
+                                                     // reserved (240.0.0.0/4),
+                                                     // broadcast (255.255.255.255)
   return false
 }
 

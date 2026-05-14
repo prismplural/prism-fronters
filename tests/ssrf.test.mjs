@@ -42,3 +42,19 @@ test("malformed addresses treated as private (fail-safe)", () => {
   assert.equal(isPrivateAddress("not-an-ip"), true)
   assert.equal(isPrivateAddress(""), true)
 })
+test("rejects RFC 6598 CGNAT (100.64.0.0/10)", () => {
+  assert.equal(isPrivateAddress("100.64.0.1"), true)
+  assert.equal(isPrivateAddress("100.127.255.255"), true)
+})
+test("accepts 100.63 and 100.128 (outside CGNAT range)", () => {
+  assert.equal(isPrivateAddress("100.63.255.255"), false)
+  assert.equal(isPrivateAddress("100.128.0.1"), false)
+})
+test("rejects multicast (224.0.0.0/4)", () => {
+  assert.equal(isPrivateAddress("224.0.0.1"), true)
+  assert.equal(isPrivateAddress("239.255.255.255"), true)
+})
+test("rejects reserved (240.0.0.0/4) and broadcast", () => {
+  assert.equal(isPrivateAddress("240.0.0.1"), true)
+  assert.equal(isPrivateAddress("255.255.255.255"), true)
+})

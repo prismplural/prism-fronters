@@ -32,7 +32,7 @@
 
   $: {
     if ($navigating && !reduceMotion) NProgress.start()
-    if (!$navigating) NProgress.done()
+    if (!$navigating && !reduceMotion) NProgress.done()
   }
 </script>
 
