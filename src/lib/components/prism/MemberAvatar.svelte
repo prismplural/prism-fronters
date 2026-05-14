@@ -15,10 +15,10 @@
   $: if (src) failed = false
 </script>
 
-<div class={`member-avatar ${size}`} {style} aria-hidden={avatarSrc ? undefined : "true"}>
+<div class={`member-avatar ${size}`} {style}>
   {#if avatarSrc}
-    <img src={avatarSrc} alt={alt || `${name || "Member"} avatar`} on:error={() => (failed = true)} />
+    <img src={avatarSrc} {alt} on:error={() => (failed = true)} />
   {:else}
-    <span>{initial}</span>
+    <span aria-hidden="true">{initial}</span>
   {/if}
 </div>

@@ -1183,3 +1183,71 @@ ol {
     width: 100%;
   }
 }
+
+/* ─── Accessibility additions ─────────────────────────────────────────────── */
+
+.skip-link {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0;
+  margin: -1px;
+  border: 0;
+
+  &:focus,
+  &:focus-visible {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 20;
+    width: auto;
+    height: auto;
+    clip: auto;
+    margin: 0;
+    padding: 0.72rem 1.2rem;
+    border-radius: var(--radius-pill);
+    background: var(--prism-purple);
+    color: #2f2a31;
+    font-family: var(--body-font);
+    font-weight: 600;
+    text-decoration: none;
+    outline: 3px solid var(--text);
+    outline-offset: 3px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.form-error {
+  color: var(--danger);
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-top: 0.3rem;
+  min-height: 1.2em; /* reserve space so layout doesn't jump */
+}
+
+.history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  /* .history-list already provides display: grid + gap from the
+     existing rule; we only need the list-reset bits here. */
+}
+/* Do NOT apply `display: contents` to <li> — that strips list /
+   listitem semantics in Safari/VoiceOver, defeating the whole
+   reason we switched to <ul>. The existing .history-row
+   (border, surface, padding) renders fine when <li> is a plain
+   block. */
+
+@media (prefers-reduced-motion: reduce) {
+  .skip-link,
+  .skip-link:focus,
+  .skip-link:focus-visible {
+    transition: none !important;
+  }
+  #nprogress {
+    display: none !important;
+  }
+}
