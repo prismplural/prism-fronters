@@ -1,7 +1,9 @@
 import { error } from "@sveltejs/kit"
 import type { RequestHandler } from "./$types"
+import { assertPublicHost } from "$lib/server/ssrf"
+import pkg from "../../../package.json" with { type: "json" }
 
-const allowedHosts = new Set(["cdn.bsky.app", "cdn.picrew.me"])
+const userAgent = `prism-fronters/${pkg.version} (+https://fronters.prismplural.com)`
 const maxAvatarBytes = 6 * 1024 * 1024
 
 const fallbackSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96">
@@ -13,37 +15,49 @@ const fallbackSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="
 function fallbackResponse() {
   return new Response(fallbackSvg, {
     headers: {
-      "Cache-Control": "public, max-age=300",
+      // no-store so transient upstream failures don't stick on
+      // the edge or the user's browser
+      "Cache-Control": "no-store",
       "Content-Type": "image/svg+xml; charset=utf-8",
     },
   })
 }
 
+// Open image relay: bounded by HTTPS-only, SSRF guard, 6MB cap,
+// content-type check, fallback SVG on upstream failure.
+// No rate limit. Revisit if abused.
+// Sends User-Agent so host operators can identify our traffic and
+// (optionally) allowlist `prism-fronters` substring.
 export const GET: RequestHandler = async ({ fetch, url }) => {
   const rawUrl = url.searchParams.get("url")
   if (!rawUrl) error(400, "Missing avatar URL.")
 
   let avatarUrl: URL
+  try { avatarUrl = new URL(rawUrl) }
+  catch { error(400, "Invalid avatar URL.") }
+
+  if (avatarUrl.protocol !== "https:") {
+    error(400, "Only https:// avatar URLs are supported.")
+  }
+
+  // SSRF guard — 400 so the caller sees an explicit rejection,
+  // not a fallback SVG that obscures the bug.
   try {
-    avatarUrl = new URL(rawUrl)
+    await assertPublicHost(avatarUrl.hostname)
   } catch {
-    error(400, "Invalid avatar URL.")
+    error(400, "Avatar host is not reachable.")
   }
 
-  if (avatarUrl.protocol !== "https:" || !allowedHosts.has(avatarUrl.hostname)) {
-    error(400, "Unsupported avatar host.")
-  }
-
+  // Upstream errors → graceful fallback SVG (no-store).
   try {
     const response = await fetch(avatarUrl, {
       headers: {
+        "User-Agent": userAgent,
         accept: "image/avif,image/webp,image/png,image/jpeg,image/*;q=0.8",
       },
     })
-
     const contentType = response.headers.get("content-type") ?? ""
     const contentLength = Number(response.headers.get("content-length") ?? "0")
-
     if (
       !response.ok ||
       !contentType.startsWith("image/") ||
@@ -51,13 +65,11 @@ export const GET: RequestHandler = async ({ fetch, url }) => {
     ) {
       return fallbackResponse()
     }
-
     const body = await response.arrayBuffer()
     if (body.byteLength > maxAvatarBytes) return fallbackResponse()
-
     return new Response(body, {
       headers: {
-        "Cache-Control": "public, max-age=3600",
+        "Cache-Control": "public, max-age=3600, s-maxage=86400",
         "Content-Type": contentType,
       },
     })

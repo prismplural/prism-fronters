@@ -1,14 +1,7 @@
-const proxiedAvatarHosts = new Set(["cdn.bsky.app", "cdn.picrew.me"])
-
-export function getAvatarDisplayUrl(src: string | null | undefined) {
+export function getAvatarDisplayUrl(src: string | null | undefined): string {
   if (!src) return ""
-
-  try {
-    const url = new URL(src)
-    if (url.protocol !== "https:") return src
-    if (!proxiedAvatarHosts.has(url.hostname)) return src
-    return `/avatar?url=${encodeURIComponent(url.toString())}`
-  } catch {
-    return ""
-  }
+  let url: URL
+  try { url = new URL(src) } catch { return src }
+  if (url.protocol !== "https:") return src
+  return `/avatar?url=${encodeURIComponent(url.toString())}`
 }
