@@ -46,7 +46,7 @@
   {#if showPronouns}
     <div class="card-meta">
       <PrismChip>
-        <AwaitHtml html={pronouns} useTwemoji={true} />
+        <AwaitHtml html={pronouns} useTwemoji={true} markdown={true} />
       </PrismChip>
     </div>
   {/if}

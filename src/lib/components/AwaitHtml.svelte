@@ -1,22 +1,15 @@
 <script lang="ts">
+  import { escapeHtml, renderSafeInlineMarkdown } from "$lib/functions/renderSafeInlineMarkdown"
   import twemoji from "@twemoji/api"
 
   export let html: string | null | undefined = ""
   export let htmlPromise: Promise<string> | null = null
   export let useTwemoji: boolean = false
-
-  function escapeHtml(value: string) {
-    return value
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#39;")
-  }
+  export let markdown: boolean = false
 
   function renderHtml(value: string | null | undefined) {
-    const escaped = escapeHtml(value ?? "")
-    return useTwemoji ? (twemoji.parse(escaped) ?? "") : escaped
+    const rendered = markdown ? renderSafeInlineMarkdown(value) : escapeHtml(value ?? "")
+    return useTwemoji ? (twemoji.parse(rendered) ?? "") : rendered
   }
 </script>
 
